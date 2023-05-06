@@ -32,7 +32,8 @@ Para configurar y ejecutar el proyecto se deben seguir los siguientes pasos:
 2. Abrir el proyecto en Visual Studio 2019 o superior.
 3. Instalar las dependencias en cada una de las 3 soluciones.
 4. Añadir en appsettings.json de DEDOMENA e ICARO una SecretKey aleatoria (caracteres aleatorios)
-5. Ejecutar en este orden: ICARO, DEDOMENA y WEB.
+5. Configurar cadenas de conexion BD en appsettings.json de DEDOMENA e ICARO
+6. Ejecutar en este orden: ICARO, DEDOMENA y WEB.
 
 ## Licencia
 
