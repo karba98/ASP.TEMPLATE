@@ -476,5 +476,3 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 /BBDD/DML/DML_DataPROD.sql
-/PLANTILLA.DEDOMENA/PLANTILLA.DEDOMENA/appsettings.json
-/PLANTILLA.ICARO/PLANTILLA.ICARO/appsettings.json
