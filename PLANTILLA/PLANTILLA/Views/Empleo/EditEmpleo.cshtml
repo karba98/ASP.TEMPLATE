@@ -1,0 +1,99 @@
+﻿@model Empleo
+
+@{
+    ViewData["Title"] = "Edit Empleo";
+    Layout = "_Layout_admin";
+}
+@{
+    var porvincias = ViewBag.Provincias as Dictionary<string, string>;
+}
+<div id="banner-wrapper" style="margin-bottom:15px;">
+    <div id="banner" class="box container">
+        <div class="row">
+            <div class="" style="
+       width: 100%;
+       border: 5px solid transparent;
+         border-radius:15px;
+       height: 100%;
+       position: relative;
+       align-content:flex-start;
+       top: 5vh;">
+                <h1>Editar oferta de empleo</h1>
+                <hr />
+                <form asp-action="EditEmpleo">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Titulo" class="control-label"></label>
+                        <input asp-for="Titulo" class="form-control"/>
+                        <span asp-validation-for="Titulo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Descripcion" class="control-label"></label>
+                        <textarea asp-for="Descripcion" class="form-control" style="resize:vertical;"></textarea>
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Salario" class="control-label"></label>
+                        <input asp-for="Salario" class="form-control" />€
+                        <span asp-validation-for="Salario" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Url" class="control-label"></label>
+                        <input asp-for="Url" class="form-control" />
+                        <span asp-validation-for="Url" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Provincia" class="control-label"></label>
+                        <select aspfor="Provincia" name="Provincia" style="width:100%">
+                            @foreach (var item in porvincias)
+                            {
+                                if (item.Value == Model.Provincia)
+                                {
+                                    <option selected="selected" value="@item.Value">@item.Key</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Value">@item.Key</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="Provincia" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Categoria"></label>
+                        <select aspfor="Categoria" name="Categoria" style="width:100%">
+                            @foreach(string categoria in ViewBag.Categorias){ 
+                                @if (Model.Categoria.Equals(categoria))
+                                {
+                                    <option value="@categoria" selected>@categoria</option>
+                                }else{
+                                    <option value="@categoria">@categoria</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="Categoria" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Telefono" class="control-label"></label>
+                        <input type="number" asp-for="Telefono" class="form-control" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <hr/>
+                    <div class="form-group">
+                        <input type="submit" value="@ViewBag.Modo" name="Modo" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

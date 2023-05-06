@@ -1,0 +1,152 @@
+﻿@model IEnumerable<PLANTILLA.Models.Article>
+
+@{
+    ViewData["Title"] = "Noticias";
+}
+@section styles{
+<link href="~/css/Home/Noticias.css" rel="stylesheet" />
+}
+@{
+    List<Article> noticias = Model as List<Article>;
+    List<Article> noticias3 = null;
+    List<Article> noticias1 = null;
+    List<Article> noticias2 = null;
+
+    if (noticias != null)
+    {
+        noticias3 = noticias.Take(3).ToList();
+        noticias1 = noticias.Take(noticias.Count / 2).Skip(3).ToList();
+        noticias2 = noticias.Skip(noticias.Count / 2).Take(noticias.Count / 2).ToList();
+    }
+
+    string alt = "alt";
+}
+@if (noticias != null)
+{
+    @if (noticias3 != null)
+    {
+        @for (int i = 0; i < noticias3.Count(); i++)
+        {
+            if (i % 2 == 0)
+            {
+                alt = "";
+            }
+            else
+            {
+                alt = "alt";
+            }
+            <div class="blog-card revealX @alt" onload="revealX()">
+                <div class="meta">
+                    <div class="photo" style="background-image: url(@noticias3[i].Img)"></div>
+                    <ul class="details">
+                        <li class="author"><a href="#">Vigilancia y Proteccion</a></li>
+                        <li class="tags">
+                            <ul>
+                                <li><a>#Noticia</a></li>
+                                <li><a>#vigilante</a></li>
+                                <li><a>#seguridad</a></li>
+                            </ul>
+                        </li>
+                        <li class="date">@noticias3[i].FechaPub</li>
+                    </ul>
+                </div>
+                <div class="description">
+                    <h1>@noticias3[i].Titulo</h1>
+                    <p>@noticias3[i].FechaPub</p>
+                    <p class="read-more">
+
+                    </p>
+                </div>
+                <a asp-controller="Home"
+       asp-action="Detallesnoticia"
+       asp-route-title="@noticias3[i].TitleUrl"
+       asp-route-fecha="@noticias3[i].FechaPubUrl" class="stretched-link"></a>
+            </div>
+
+
+        }
+    }
+
+    <div class="row r_hpanel">
+        <div class="row my-4">
+            <div class="col-md-6 col-xl-5 show panel_content_noticias">
+                <p class="text-uppercase font-weight-bold text-center d-flex justify-content-center
+                    align-items-center panel_titles">
+                </p>
+                @if (noticias1 != null)
+                {
+                    foreach (Article n in noticias1)
+                    {
+                        <div class="card mb-3 card-noticia revealX">
+                            <img src="@n.Img" onerror="this.src='/assets/images/error_display_image.png';" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">@n.Titulo</h5>
+                                <p class="card-text"><small class="text-muted">@n.FechaPub</small></p>
+                            </div>
+                            <a asp-controller="Home"
+                   asp-action="Detallesnoticia"
+                   asp-route-title="@n.TitleUrl"
+                   asp-route-fecha="@n.FechaPubUrl" class="stretched-link"></a>
+                        </div>
+                    }
+
+
+                }
+            </div>
+            <div class="col-md-auto col-xl-7 panel_content_noticias ">
+                <p class="text-uppercase font-weight-bold text-center d-flex justify-content-center
+                    align-items-center panel_titles">
+                </p>
+                @if (noticias2 != null)
+                {
+                    @for (int i = 0; i < noticias2.Count(); i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            alt = "";
+                        }
+                        else
+                        {
+                            alt = "alt";
+                        }
+                        <div class="blog-card revealY @alt">
+                            <div class="meta">
+                                <div class="photo" style="background-image: url(@noticias2[i].Img)"></div>
+                                <ul class="details">
+                                    <li class="author"><a href="#">Vigilancia y Proteccion</a></li>
+                                    <li class="tags">
+                                        <ul>
+                                            <li><a>#Noticia</a></li>
+                                            <li><a>#vigilante</a></li>
+                                            <li><a>#seguridad</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="date">@noticias2[i].FechaPub</li>
+                                </ul>
+                            </div>
+                            <div class="description">
+                                <h1>@noticias2[i].Titulo</h1>
+                                <p>@noticias2[i].FechaPub</p>
+                                <p class="read-more">
+
+                                </p>
+                            </div>
+                            <a asp-controller="Home"
+                   asp-action="Detallesnoticia"
+                   asp-route-title="@noticias2[i].TitleUrl"
+                   asp-route-fecha="@noticias2[i].FechaPubUrl" class="stretched-link"></a>
+                        </div>
+
+
+                    }
+                }
+            </div>
+
+
+        </div>
+    </div>
+}
+else
+{
+    <h1>No hay noticias disponibles</h1>
+}

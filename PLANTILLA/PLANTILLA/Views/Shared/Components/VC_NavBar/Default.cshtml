@@ -1,0 +1,65 @@
+﻿@using PLANTILLA.Models
+<link href="~/css/Layout/Navbar.css" rel="stylesheet" />
+@*MENU DE NAVEGACION*@
+<div id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm navbar_main">
+        <img class="logo" src="~/assets/images/logo.png" onerror="this.src='~/assets/images/error_display_image.png';" />
+        <img class="logo" src="~/assets/images/bandespaña.png" onerror="this.src='~/assets/images/error_display_image.png';" />
+        <button type="button" data-toggle="collapse" data-target="#navbarContent"
+                aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a asp-controller="Home" asp-action="Index" class="nav-link font-weight-bold text-uppercase">INICIO</a></li>
+                <li class="nav-item"><a asp-controller="Home" asp-action="Noticias" class="nav-link font-weight-bold text-uppercase">NOTICIAS</a></li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <b>EMPLEO</b>
+                    </a>
+                    <div class="dropdown-menu dropdown-custom" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-controller="Empleo" asp-action="Ofertas">Buscar Ofertas</a>
+                        <a class="dropdown-item" asp-controller="Home" asp-action="Empresas">Empresas Pirata</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-share-alt"></i>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-custom" aria-labelledby="navbarDropdown">
+                        <a href="whatsapp://send?text=@ViewBag.Url" data-action="share/whatsapp/share"
+                           class="dropdown-item dropdown-item-share" tooltip="WhatsApp"><i class="fab fa-whatsapp"></i>&nbsp;&nbsp;WHATSAPP</a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=#@(ViewBag.Url)"
+                           class="dropdown-item" tooltip="Facebook"><i class="fab fa-facebook-f"></i>&nbsp;&nbsp;FACEBOOK</a>
+                        <a href="https://twitter.com/intent/tweet?url=@(ViewBag.Url)" target="_blank"
+                           class="dropdown-item" tooltip="Twitter"><i class="fab fa-twitter"></i>&nbsp;&nbsp;TWITTER</a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=@(ViewBag.Url)&source=https://vigilanciayproteccion.website"
+                           target="_blank" class="dropdown-item" tooltip="LinkedIn"><i class="fab fa-linkedin"></i>&nbsp;&nbsp;LINKEDIN</a>
+                        <a href="https://t.me/share/url?url=@(ViewBag.Url)"
+                           class="dropdown-item"
+                           tooltip="Telegram"><i class="fab fa-telegram"></i>&nbsp;&nbsp;TELEGRAM</a>
+
+                    </div>
+                </li>
+                @if (Context.User.IsInRole("Admin"))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/assets/webfonts/tool.svg" alt="Bootstrap" width="23" height="23">
+                        </a>
+                        <div class="dropdown-menu dropdown-custom" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-controller="Empleo" asp-action="ManageEmpleo">Panel</a>
+                            <a class="dropdown-item" asp-controller="documents" asp-action="rssindeed">Gestionar rss indeed</a>
+                            <a class="dropdown-item" asp-controller="Account" asp-action="CerrarSesion">Cerrar Sesión</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+    @Html.Raw(ViewBag.Alert)
+</div>

@@ -1,0 +1,281 @@
+﻿@model IEnumerable<PLANTILLA.Models.Empleo>
+@{
+    ViewData["Title"] = "Portal Vigilancia y protecion - Admin";
+    Layout = "_Layout_admin";
+}
+@section styles{
+<link href="~/css/PanelAdmin/Empleo.ManageEmpleo.css" rel="stylesheet" />
+<link href="~/css/PanelAdmin/Empleo.ManageEmpleo.Chart.css" rel="stylesheet" />
+<!--.td_modo indica el modo de la oferta (borrador o publica)-->
+<!--.trborrador y trpub indica el modo de la oferta (solo para css para color de fondo de fila)(borrador o publica)-->
+}
+@section scripts{
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.js"></script>
+
+<script language="javascript" src="~/js/PanelAdmin/Empleo.ManageEmpleo.Filters.js"></script>
+<script language="javascript" src="~/js/PanelAdmin/Empleo.ManageEmpleo.Publicar.js"></script>
+<script language="javascript" src="~/js/PanelAdmin/Empleo.ManageEmpleo.ICARO.js"></script>
+<script language="javascript" src="~/js/PanelAdmin/Empleo.ManageEmpleo.Modal.js"></script>
+<script language="javascript" src="~/js/PanelAdmin/Empleo.ManageEmpleo.Screen.js"></script>
+<script language="javascript" src="~/js/PanelAdmin/Empleo.ManageEmpleo.Chart.js"></script>
+<script language="javascript" src="~/js/PanelAdmin/Empleo.ManageEmpleo.Delete.js"></script>
+<script language="javascript" src="~/js/PanelAdmin/Home.CreateSitemap.js"></script>
+
+    @if (ViewBag.Reload == true)
+    {
+<script language="javascript" src="~/js/PanelAdmin/Empleo.ManageEmpleo.LoadRSSs.js"></script>
+    }
+}
+
+
+<!-- Modal -->
+<!--style="display:@ViewBag.Displayed" para controlar si se muestra el modal o no-->
+<div id="myModal" class="modal" style="display:@ViewBag.Displayed">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1 id="modaltext">@Html.Raw(ViewBag.Mensaje)</h1>
+    </div>
+
+</div>
+
+<div>
+@*      <a class="btn btn-success" href="?refresh=true">ACTUALIZAR</a>
+        <a class="btn btn-info" asp-action="InsertEmpleo">CREAR OFERTA</a>
+        <a class="btn btn-danger" asp-action="OrganizeEmpleo">BORRAR OFERTAS ANTIGUAS (>14 DIAS)</a>
+        <button type="button" onclick="resetFilters()" class="btn btn-warning"><span class="button__text">RESET FILTROS</span></button>*@
+
+    <a class="btnMain btn btn-warning" href="?refresh=true">
+        <img src="/assets/webfonts/panel_update.svg" alt="Bootstrap" width="23" height="23">
+    </a>
+        <a class="btnMain btn btn-warning" asp-action="InsertEmpleo">
+        <img src="/assets/webfonts/panel_new.svg" alt="Bootstrap" width="23" height="23">
+    </a>
+    <a class="btnMain btn btn-warning" asp-action="OrganizeEmpleo">
+        <img src="/assets/webfonts/panel_cleanoffers.svg" alt="Bootstrap" width="23" height="23">
+    </a>
+    <a id="btnsitemap" class="btnMain btn btn-warning" >
+        <img id="img_sitemap" src="/assets/webfonts/icon-sitemap.png" alt="Bootstrap" width="23" height="23">
+    </a>
+        <a id="btnsitemap" class="btnMain btn btn-warning" asp-action="Filtro">
+        <img id="img_sitemap" src="/assets/webfonts/filticon.png" alt="Bootstrap" width="23" height="23">
+    </a>
+   
+
+    @* <label>Categorías públicas: </label>
+        <div class="graph_container">
+        <canvas id="Chart1"></canvas>
+        </div>*@
+
+    <hr />
+    <label>Busqueda por titulo: </label>
+    <form class="modo">
+        <input id="searchTerm" type="text" class="form-control" onkeyup="doSearch()" placeholder="Buscar por titulo" />
+    </form>
+
+    <label>Fecha: </label><input type="date" id="date" class="input form-control" onchange="doSearch()" name="birthday">
+
+    <label>Fuente:  </label>
+    <select id="Filtros" class="custom-select" oninput="doSearch()">
+        <option>Todas</option>
+        <option>Borradores</option>
+        <option>Públicas</option>
+    </select>
+
+    <label>Categoria:  </label>
+    <select id="Categorias" class="custom-select" oninput="doSearch()">
+        <option value="Todas" selected>Todas</option>
+        @foreach (var categoria in ViewBag.Categorias)
+        {
+            <option value="@categoria">@categoria</option>
+        }
+    </select>
+    <button type="button" onclick="resetFilters()" class="btn btn-warning btnreset">
+        <span class="button__text">
+@*            <img src="/assets/webfonts/panel_resetfilters.svg" alt="Bootstrap" width="33" height="33">*@
+                LIMPIAR FILTROS
+        </span>
+    </button>
+    <hr/>
+    @if (Model != null)
+    {
+        <div class="table-3">
+            <table id="datos" class="table">
+                <thead>
+                    <tr class="table-headers">
+                        <th></th>
+
+                        <th></th>
+                        <th class="hidden_col">En RRSS</th>
+
+                        <th>
+                            Oferta
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Categoria)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Url)
+                        </th>
+                        <th class="hidden_col"></th><!--url vigilanicayproteccion-->
+                    <th class="hidden_col"></th><!--mensaje para envair a ICARO-->
+                    <th>Fecha</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Provincia)
+                        </th>
+                        <th class="hidden_col"></th><!--modo (borrador, publicado...)-->
+                </tr>
+                </thead>
+                <tbody>
+                    @*BORRADORES*@
+
+                    @if(ViewBag.Borradores != null){
+                        @foreach (var item in ViewBag.Borradores)
+                        {
+
+
+                            <tr class="trborrador @item.Categoria">
+                                <td class="td_actions">
+                                    <a class="bi bi-trash2-fill delete btnaction" onclick="deleteOfertaBR(this,@item.Id)">
+                                        <img src="/assets/webfonts/trash3-fill.svg" alt="Bootstrap" width="23" height="23">
+                                    </a>
+                                    <a class="btnaction edit" asp-action="EditEmpleo" asp-route-Modo="BR" asp-route-id="@item.Id">
+                                        <img src="/assets/webfonts/pencil-square.svg" alt="Bootstrap" width="23" height="23">
+                                    </a>
+                                    <a class="btnaction update">-</a>
+                                </td>
+
+
+                                <td class="td_action">
+                                    <button type="button" style="@ViewBag.Publicar" onclick="Publicar(this,@item.Id)"
+                                class="button_publish button btn btn-info">
+                                        <span class="button__text">PUBLICAR</span>
+                                    </button>
+                                </td>
+                                <td class="hidden_col td_published">-</td>
+                                <td class="td_titulo">
+                                    @*<input class="chbx" type="checkbox" />*@
+                                    <a class="td_titulo_a">@item.Titulo</a>
+                                </td>
+                                <td class="td_categoria">
+                                    @item.Categoria
+                                </td>
+                                <td class="td_url">
+                                    @if (item.Url != null && item.Url != "")
+                                    {
+                                        <a href="@item.Url"><img class="url" src="~/assets/images/urlicon.png"></a>
+                                    }
+                                </td>
+                                <td class="hidden_col td_urlvigi"></td>
+                                <td class="hidden_col td_mensaje"></td>
+                                <td class="td_fecha">
+                                    @item.FechaString
+                                </td>
+
+                                @if (item.Provincia != null)
+                                {
+                                    <td class="td_provincia">
+                                        @item.Provincia.ToUpper()
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="td_provincia">
+                                        NF
+                                    </td>
+                                }
+
+                                <td class="hidden_col td_modo" id="modo">@item.Modo</td>
+                            </tr>
+
+
+                        }
+                    }
+                    @if(Model!=null){
+                        @*PUBLICAS*@
+                        @foreach (var item in Model)
+                        {
+                            /*Creamos mensaje para PostOferta*/
+                            var fecha = item.FechaString;
+                            fecha = System.Net.WebUtility.UrlEncode(fecha);
+                            var myurl = "https://vigilanciayproteccion.website/Empleo/Oferta?provincia=" + item.Provincia + "&fecha=" + fecha;
+                            string mensaje = myurl + "\n " + item.Titulo;
+
+
+                            <tr class="trpub">
+                                <td class="td_actions">
+                                    <a class="btnaction" onclick="deleteOferta(this,@item.Id)">
+                                        <img src="/assets/webfonts/trash3-fill.svg" alt="Bootstrap" width="23" height="23">
+                                    </a>
+                                    <a class="btnaction" asp-action="EditEmpleo" asp-route-Modo="PU" asp-route-id="@item.Id">
+                                        <img src="/assets/webfonts/pencil-square.svg" alt="Bootstrap" width="23" height="23">
+                                    </a>
+                                    <a class="btnaction" asp-action="DetallesOferta" asp-route-provincia="@item.Provincia"
+                           asp-route-titulo="@item.FechaString">
+
+                                        <img src="/assets/webfonts/info-square.svg" alt="Bootstrap" width="23" height="23">
+                                    </a>
+                                </td>
+                                <td class="td_action">
+                                    <!--style="ViewBag.Publicar" para bloquear el boton publicar en caso de no haber conexion a ICARO-->
+                                    <button type="button" style="@ViewBag.Publicar" onclick="sendToICARO(this)"
+                                class="button_send button btn btn-info">
+                                        <span class="button__text">ENVIAR</span>
+                                    </button>
+                                </td>
+                                <td class="hidden_col td_published">
+                                    @if (item.Publicado == 1)
+                                    {
+                                        <button type="button" class="btn btn-outline-success">SI</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-outline-danger">NO</button>
+                                    }
+                                </td>
+                                <td class="td_titulo">
+                                    @* <input class="chbx" type="checkbox" />*@
+                                    <a class="td_titulo_a">@Html.DisplayFor(modelItem => item.Titulo)</a>
+                                </td>
+                                <td class="td_categoria">
+                                    @Html.DisplayFor(modelItem => item.Categoria)
+                                </td>
+                                <td class="td_url">
+                                    @if (item.Url != null && item.Url != "")
+                                    {
+                                        <a href="@Html.DisplayFor(modelItem => item.Url)"><img class="url" src="~/assets/images/urlicon.png"></a>
+                                    }
+                                </td>
+                                <td class="hidden_col td_urlvigi">@myurl</td><!--url vigilanicayproteccion-->
+                                <td class="hidden_col td_mensaje">@mensaje</td><!--mensaje-->
+                                <td class="td_fecha">
+                                    @Html.DisplayFor(modelItem => item.FechaString)
+                                </td>
+                                @if (item.Provincia != null)
+                                {
+                                    <td class="td_provincia">
+                                        @item.Provincia.ToUpper()
+                                    </td>
+                                }
+                                else
+                                {
+
+                                    <td class="td_provincia">
+                                        NF
+                                    </td>
+                                }
+                                <td class="hidden_col td_modo" id="modo">P</td>
+                            </tr>
+                        }
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>
+
+<hr />

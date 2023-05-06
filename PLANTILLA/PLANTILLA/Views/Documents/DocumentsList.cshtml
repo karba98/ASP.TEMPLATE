@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "DocumentsList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<Fichero>
+
+@{
+    var documentos = Model as List<Fichero>;
+}
+@section styles{
+<link href="~/css/Documents/DocumentsList.css" rel="stylesheet" />
+}
+@section scripts{
+<script src="~/js/Layout/BuscadorDinamicoTable.js"></script>
+}
+
+<form>
+    <input id="searchTerm" type="text" onkeyup="doSearch()" placeholder="Buscar Documento" />
+</form>
+@if (documentos != null && documentos.Count() > 0)
+{
+    <table id="datos">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Fichero e in documentos)
+            {
+                <tr>
+                    <td colspan="2" class="noSearch">
+                        <a href="@Url.Action("DocumentDownload", new { filename = e.Name })">
+                            <img class="pdfi" src=~/assets/images/pdficon.png />
+                        </a>
+                        <br/>
+                    </td>
+                    <td class="ftitle">@e.Description</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>No hay documentos a mostrar</h1>
+}
+
+

@@ -1,0 +1,12 @@
+﻿.blog-card-article {
+    flex-direction: column !important;
+}
+.title-article {
+    /*font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important*/
+}
+
+@media (min-width: 600px) {
+    .title-article {
+        font-size: 60px !important;
+    }
+}

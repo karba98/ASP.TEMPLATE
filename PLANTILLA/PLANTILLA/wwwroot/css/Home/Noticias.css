@@ -1,0 +1,13 @@
+﻿.panel_content_noticias {
+    padding: 0 !important;
+    padding-left: 3% !important;
+    padding-right: 1% !important;
+}
+
+@media (max-width: 1300px) {
+
+    .panel_content_noticias {
+        padding-left: 7% !important;
+        padding-right: 3% !important;
+    }
+}

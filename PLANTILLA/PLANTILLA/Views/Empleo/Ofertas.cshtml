@@ -1,0 +1,130 @@
+﻿@model IEnumerable<PLANTILLA.Models.Empleo>
+@{
+    ViewData["Title"] += "Ofertas de Empleo para vigilantes de seguridad";
+}
+@section styles{
+
+<link href="~/css/Empleo/Ofertas.css" rel="stylesheet" />
+
+}
+@section scripts{
+<script language="javascript" src="~/js/Layout/BuscadorDinamicoCards.js"></script>
+<script language="javascript" src="~/js/Empleo/Ofertas/ModalProvincias.js"></script>
+<script language="javascript" src="~/js/Empleo/Ofertas/BanderasHover.js"></script>
+<script language="javascript" src="~/js/Empleo/Ofertas/CarouselOfertas.js"></script>
+
+}
+<h2>Ofertas de empleo</h2>
+
+<button id="mySizeChart" class="btn_provincias revealX">
+    Buscar por provincias
+</button>
+<div id="mySizeChartModal" class="ebcf_modal">
+
+    <div class="ebcf_modal-content">
+        <span class="ebcf_close">&times;</span>
+        <form class="input_provincias">
+            <input type="search" id="searchTerm" onkeyup="doSearch()"
+                   placeholder="Buscar provincia" />
+        </form>
+        @if (ViewBag.Provincias != null)
+        {
+            <div class="cards" id="datos_card">
+                @foreach (var item in ViewBag.Provincias)
+                {
+                    <div class="card"
+                 onmouseout="undoHover(this,'/assets/images/provincias/banderas/@(item.Value).png')"
+                 onmouseover="doHover(this)"
+                 style="background-image:url('/assets/images/provincias/banderas/@(item.Value).png')">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Key</h5>
+                            <a asp-controller="Empleo"
+                       asp-action="OfertasProvincia"
+                       asp-route-provincia="@item.Value" class="stretched-link"></a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+    </div>
+
+</div>
+@if (Model != null && Model.Count() > 0)
+{
+    <!--Carousel Ofertas-->
+    <div class="container text-center my-3 revealX">
+        <div class="row mx-auto my-auto">
+            <div id="recipecarousel" class="carousel slide w-100" data-ride="carousel">
+                <div class="carousel-inner cinner_ofertas w-100" role="listbox">
+
+                    <div class="carousel-item active">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.FirstOrDefault().Titulo</h5>
+                                    <p class="card-text"><small class="text-muted">@Model.FirstOrDefault().FechaString</small></p>
+                                    <a asp-controller="Empleo"
+                                   asp-action="Oferta"
+                                   asp-route-provincia="@Model.FirstOrDefault().Provincia"
+                                   asp-route-fecha="@Model.FirstOrDefault().FechaString" 
+                                   asp-route-titulo = "@Model.FirstOrDefault().Titulo" class="stretched-link"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @foreach (var item in Model.Skip(1).Take(5))
+                    {
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@item.Titulo</h5>
+                                        <p class="card-text"><small class="text-muted">@item.FechaString</small></p>
+                                        <a asp-controller="Empleo"
+                                   asp-action="Oferta"
+                                   asp-route-provincia="@item.Provincia"
+                                   asp-route-fecha="@item.FechaString"
+                                   asp-route-titulo="@item.Titulo" class="stretched-link"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <a class="carousel-control-prev w-auto" href="#recipecarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next w-auto" href="#recipecarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <hr />
+
+    <div class="cards revealY" id="datos">
+        @foreach (var item in Model.Skip(6))
+        {
+            <div class="card zoom revealX">
+                <img src="~/assets/images/empleo/@(item.Categoria).jpg"
+             onerror="this.src='/assets/images/error_display_image.png';" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Titulo</h5>
+                    <p class="card-text"><small class="text-muted">@item.FechaString</small></p>
+                    <a asp-controller="Empleo"
+               asp-action="Oferta"
+               asp-route-provincia="@item.Provincia"
+               asp-route-fecha="@item.FechaString" 
+               asp-route-titulo ="@item.Titulo" class="stretched-link"></a>
+                </div>
+            </div>
+        }
+    </div>
+}
+

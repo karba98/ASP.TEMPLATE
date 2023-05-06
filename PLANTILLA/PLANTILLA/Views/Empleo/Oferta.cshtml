@@ -1,0 +1,161 @@
+﻿@model PLANTILLA.Models.Empleo
+
+
+@*  EmpleoController:
+
+    ViewBag.ProvinciaImg = provincia;
+    ViewBag.TopOfertas = ofertas;
+
+    ViewBag.MetaTitle = empleo.Titulo;
+    ViewBag.MetaImg = urli;
+    Model => Empleo
+*@
+
+@{
+    List<Empleo> TopOfertas = ViewBag.TopOfertas as List<Empleo>;
+}
+
+@section styles{
+    <link href="~/css/Empleo/Oferta.css" rel="stylesheet" />
+
+}
+    @section scripts{
+    <script language="javascript" src="~/js/Empleo/Ofertas/CarouselOfertas.js"></script>
+    <script language="javascript" src="~/js/Layout/Layout_affiliate.js"></script>
+}
+@if (Model != null)
+{
+    ViewData["Title"] += "Ofertas de Empleo para vigilantes de seguridad"
+    + Model.ProvinciaName + " - " + Model.Titulo;
+
+    var components = Context.Request.QueryString.ToUriComponent();
+    string currentUrl = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path + components;
+    string url = System.Net.WebUtility.UrlEncode(currentUrl);
+    string titulourl = System.Net.WebUtility.UrlEncode(Model.Titulo);
+    var topofertas = ViewBag.TopOfertas as List<Empleo>;
+
+    @if (topofertas != null && topofertas.Count() > 0)
+    {
+        <hr />
+        <h2>Ofertas de trabajo para @Model.ProvinciaName</h2>
+
+        <hr />
+        <!--Carousel Ofertas-->
+        <div class="container text-center my-3 revealX">
+            <div class="row mx-auto my-auto">
+                <div id="recipecarousel" class="carousel slide w-100" data-ride="carousel">
+                    <div class="carousel-inner cinner_ofertas w-100" role="listbox">
+
+                        <div class="carousel-item active">
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@topofertas.FirstOrDefault().Titulo</h5>
+                                        <p class="card-text"><small class="text-muted">@topofertas.FirstOrDefault().FechaString</small></p>
+                                        <a asp-controller="Empleo"
+                                   asp-action="Oferta"
+                                   asp-route-provincia="@topofertas.FirstOrDefault().Provincia"
+                                   asp-route-fecha="@topofertas.FirstOrDefault().FechaString" class="stretched-link"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach (var item in topofertas.Skip(1).Take(5))
+                        {
+                            <div class="carousel-item">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@item.Titulo</h5>
+                                            <p class="card-text"><small class="text-muted">@item.FechaString</small></p>
+                                            <a asp-controller="Empleo"
+                                   asp-action="Oferta"
+                                   asp-route-provincia="@item.Provincia"
+                                   asp-route-fecha="@item.FechaString"
+                                   asp-route-titulo="@item.Titulo" class="stretched-link"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <a class="carousel-control-prev w-auto" href="#recipecarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next w-auto" href="#recipecarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    }
+
+    <hr />
+    <div class="main_oferta revealY">
+        <section>
+            @*            <div class="banner_img" style="background-image:url('/assets/images/empleo/@(Model.Categoria).jpg')">*@
+            <div class="banner_img">
+                <img class="img_oferta" src="~/assets/images/provincias/banderas/@(Model.Provincia).png" onerror="this.src='/assets/images/error_display_image.png';" />
+                <img class="img_oferta" src="~/assets/images/empleo/@(Model.Categoria).jpg" onerror="this.src='/assets/images/error_display_image.png';" />
+            </div>
+            <article onmousedown='return false;' onselectstart='return false;'>
+                <h1>Oferta de empleo de @Model.Titulo</h1>
+                <!--GOOGLE AD-->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574149679941923"
+                    crossorigin="anonymous"></script>
+                <!-- alarmas para categorias -->
+                <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-1574149679941923"
+                 data-ad-slot="7961897952"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+                @*<img class="imgoferta" src="~/assets/images/empleo/@(Model.Categoria).jpg"/>*@
+                <h4>Oferta de trabajo de @Model.Titulo</h4>
+                <hr />
+                <p>@Html.Raw(Model.Descripcion)</p>
+                @if (Model.Salario != 0)
+                {
+                    <p>Salario: @Model.Salario</p>
+                }
+                @if (Model.Telefono != "" && Model.Telefono != null)
+                {
+                    <br />
+                    <i class="gg-phone" onclick="window.location.href='tel:@Model.Telefono'"></i>
+                    <p><a href="tel:@Model.Telefono">@Model.Telefono</a></p>
+                }
+                @if (Model.Email != null && Model.Email != "")
+                {
+                    <br />
+                    <i class="gg-mail" onclick="window.location.href='mailto:@Model.Email'"></i>
+                    <p><a href="mailto:@Model.Email">@Model.Email</a></p>
+                }
+                @if (Model.Url != null)
+                {
+                    <br />
+                    @*<a class="btn btn-info" href="@Model.Url">Ver más detalles</a>*@
+                    <i class="gg-website" onclick="window.location.href='@Model.Url'"></i>
+                    <p><a href="@Model.Url">INSCRIBIRSE</a></p>
+                }
+
+                <hr />
+                <p>@Model.FechaString</p>
+            </article>
+        </section>
+    </div>
+}
+else
+{
+    <div class="revealY">
+        <h1>Esta oferta ya no está disponible</h1>
+        <a asp-action="index" asp-controller="Home">Volver a Inicio</a>
+    </div>
+}

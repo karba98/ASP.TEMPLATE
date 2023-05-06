@@ -1,0 +1,38 @@
+﻿@media (min-width: 1300px) {
+    .panel_index_hideable {
+        display: none !important;
+    }
+}
+.panel_index_hideable{
+    padding:3% !important;
+}
+
+
+/*-------------------*/
+.card {
+    height: auto !important;
+}
+.card img{
+    max-height:200px !important;
+}
+
+.cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+}
+
+/* Screen larger than 600px? 2 column */
+@media (min-width: 600px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Screen larger than 900px? 3 columns */
+@media (min-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

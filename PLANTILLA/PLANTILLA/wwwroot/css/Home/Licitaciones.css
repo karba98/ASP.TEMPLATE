@@ -1,0 +1,39 @@
+﻿.licit_bandera{
+    height:5% !important;
+    width:5% !important;
+    margin-right:2%;
+}
+#datos tr{
+    background-color:#ff9400;
+    border:solid white
+        
+}
+#datos tbody tr:hover{
+    background-color:#b0b0b0;
+    transform:scale(1.01);
+}
+#datos tbody tr td{
+    border:solid white;
+    column-width:auto;
+    color:white;
+    font-weight:bold;
+}
+#datos tbody tr{
+    cursor:pointer;
+}
+
+#datos{
+    width:100% !important;
+}
+#searchTerm{
+    width:100%;
+    margin-bottom:5%;
+    margin-bottom:1%;
+
+    font-size: 1.4em;
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    padding: 10px;
+    border-radius: 10px;
+}

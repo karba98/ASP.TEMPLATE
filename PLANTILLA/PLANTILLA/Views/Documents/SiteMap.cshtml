@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "DocumentsManager";
+    Layout = "_Layout_admin";
+}
+@model List<Fichero>
+@section styles{
+    <style>
+        .pdfi{height:30px;
+        margin-right:20px;
+        margin-top:10px;}
+    </style>
+
+}
+
+<div id="banner-wrapper" style="margin-bottom: 15px;">
+    <div id="banner" class="box container" style="box-shadow: #000 1px 0 10px;background-color:white;padding:15px;">
+         <form method="post" enctype="multipart/form-data" asp-action="SiteMap">
+            @Html.AntiForgeryToken()
+            <span>Seleccione Sitemap.xml: </span>
+            <input type="file" name="postedFiles" accept=".xml" class="form-group" />
+            <button type="submit" class="btn btn-light">Cargar</button>
+            <br />
+        </form>
+    </div>
+</div>
+
+

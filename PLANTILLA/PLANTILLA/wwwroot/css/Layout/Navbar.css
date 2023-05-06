@@ -1,0 +1,151 @@
+﻿
+
+#navbar {
+    /*overflow: hidden;*/
+    /*background-color: #333;*/
+    z-index: 99;
+}
+
+.navbar_main {
+    background-color: #ffff !important;
+}
+
+#navbar a {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+    #navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    #navbar a.active {
+        background-color: #04AA6D;
+        color: white;
+    }
+
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+
+.logo {
+    width: 70px;
+    height: 70px;
+}
+
+.navbar-brand img:hover {
+    opacity: 0 !important;
+    transition: opacity 1s;
+}
+
+
+.megamenu {
+    position: static !important;
+}
+
+    .megamenu .dropdown-menu {
+        background: none;
+        border: none;
+        width: 100%
+    }
+
+/*Oculta center ellipse panel la lista de ofertas
+y la entrada de cursos para que en moviles no se
+quede enganchado*/
+
+@media (max-width: 1300px) {
+    .hideable {
+        display: none !important;
+    }
+
+    .dropdown-menu {
+        border: none !important;
+        box-shadow: none !important;
+    }
+}
+
+#panel {
+    z-index: 100;
+    opacity: 0.99 !important;
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1), 0 0 0 2px rgb(255,255,255), 0.3em 0.3em 1em rgba(0,0,0,0.3) !important;
+    border-radius: 0.5rem;
+}
+
+.panel_content {
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+
+}
+
+.panel_titles {
+    text-align: center !important;
+    font-size: 1.4em;
+    margin-bottom: 10%;
+}
+
+.panel_ofertas_nav {
+    font-size: 90% !important;
+    text-align: initial;
+    padding: 0.5% !important;
+}
+
+.panel_ofertas a {
+    border-radius: 2px;
+    height: auto;
+}
+
+    .panel_ofertas a:hover {
+        transition: background-color 0.5s;
+    }
+
+.noticia_img {
+    height: 90% !important;
+}
+
+.banner {
+    width: 100%;
+    height: 100%;
+    background-color: black !important;
+}
+
+.r_hpanel {
+    margin-right: 1% !important;
+}
+
+code {
+    color: #745eb1;
+    background: #fff;
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.2rem
+}
+
+.text-uppercase {
+    letter-spacing: 0.08em
+}
+
+.container {
+    background-color: white
+}
+
+.dropdown-item {
+    text-align: left !important;
+    margin-left: 2%;
+}
+
+
+.text-uppercase span {
+    color: white;
+}
+
+.custom_button_novedades {
+    color: white !important;
+}

@@ -1,0 +1,28 @@
+﻿.pdfi {
+    height: 30px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+td.titlefile {
+    vertical-align: middle;
+    font-weight: 900;
+}
+
+.ftitle {
+    vertical-align: middle;
+    font-weight: 900;
+    font-style: normal;
+    font-size: medium !important;
+}
+#searchTerm {
+    width: 100%;
+    margin-bottom: 5%;
+    margin-bottom: 1%;
+    font-size: 1.4em;
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    padding: 10px;
+    border-radius: 10px;
+}

@@ -1,0 +1,126 @@
+﻿@using PLANTILLA.Models
+@{
+    Empleo empleo = ViewBag.Empleo;
+    Article noticia = ViewBag.Noticia;
+    Article otranoticia = ViewBag.OtraNoticia;
+
+    Random r = new Random();
+    int mainimg = r.Next(1, 9);
+}
+<link href="~/css/Layout/Navbar.css" rel="stylesheet" />
+
+@*CAROUSEL*@
+<div class="header">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class=""></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2" class=""></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="3" class=""></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="4" class=""></li>
+        </ol>
+        <div class="carousel-inner">
+
+            <!--ITEM MAIN-->
+            <div class="carousel-item">
+                <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;"
+                     onerror="this.src='/assets/images/error_display_image.png';"
+                     alt="Ocurrió un error en la imagen"
+                     src="~/assets/images/backgrounds/b@(mainimg).jpg" data-holder-rendered="true">
+                <div class="carousel-caption">
+                    <div class="spin_carousel spinner-grow text-light" role="status">
+                        <span class="sr-only"></span>
+                    </div>
+                    <h5>Vigilancia y Protección</h5>
+                    <p>@ViewBag.Title</p>
+                </div>
+            </div>
+            <!--ITEM NOTICIA-->
+
+            <div class="carousel-item active">
+                <a id="noticia_url" href="" class="stretched-link">
+                    <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;"
+                         onerror="this.src='/assets/images/error_display_image.png';"
+                         alt="Ocurrió un error en la imagen"
+                         src="" data-holder-rendered="true"
+                         id="noticia_img">
+                    <div class="carousel-caption">
+                        <div class="spin_carousel spinner-grow text-light" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+
+                        <h5>Noticias</h5>
+                        <p id="noticia_titulo"></p>
+                        <span id="noticia_fecha"></span>
+                    </div>
+                </a>
+            </div>
+
+            <!--ITEM EMPLEO-->
+
+            <div class="carousel-item">
+                <a id="oferta_url" href="">
+                    <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;"
+                         onerror="this.src='/assets/images/error_display_image.png';"
+                         alt="Ocurrió un error en la imagen"
+                         src=""
+                         data-holder-rendered="true"
+                         id="oferta_img">
+                    <div class="carousel-caption">
+                        <div class="spin_carousel spinner-grow text-light" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                        <h5>Empleo</h5>
+                        <p id="oferta_titulo"> </p>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="carousel-item">
+                <a id="otranoticia_url" class="stretched-link">
+                    <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;"
+                         onerror="this.src='/assets/images/error_display_image.png';"
+                         alt="Ocurrió un error en la imagen"
+                         src="" data-holder-rendered="true"
+                         id="otranoticia_img">
+                    <div class="carousel-caption">
+                        <div class="spin_carousel spinner-grow text-light" role="status">
+                            <span class="sr-only">.</span>
+                        </div>
+                        <h5>Noticias</h5>
+                        <p id="otranoticia_titulo"></p>
+                        <span id="otranoticia_fecha"></span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="carousel-item">
+                <a id="curso_url" class="stretched-link">
+                    <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;"
+                         onerror="this.src='/assets/images/error_display_image.png';"
+                         alt="Ocurrió un error en la imagen"
+                         src="" data-holder-rendered="true"
+                         id="curso_img">
+                    <div class="carousel-caption">
+                        <div class="spin_carousel spinner-grow text-light" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                        <h5>Cursos</h5>
+                        <p id="curso_titulo"></p>
+                        <span id="curso_fecha"></span>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>

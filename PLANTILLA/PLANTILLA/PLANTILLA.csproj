@@ -1,0 +1,103 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <OutputType>Exe</OutputType>
+    <!--<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Shared\Components\VC_Panel\**" />
+    <Content Remove="Views\Shared\Components\VC_Panel\**" />
+    <EmbeddedResource Remove="Views\Shared\Components\VC_Panel\**" />
+    <None Remove="Views\Shared\Components\VC_Panel\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\Register.cshtml" />
+    <None Include="Views\Documents\DocumentsList.cshtml" />
+    <None Include="Views\Documents\DocumentsManager.cshtml" />
+    <None Include="Views\Empleo\EditEmpleo.cshtml" />
+    <None Include="Views\Empleo\InsertEmpleo.cshtml" />
+    <None Include="Views\Empleo\ManageEmpleo.cshtml" />
+    <None Include="Views\Empleo\Oferta.cshtml" />
+    <None Include="Views\Empleo\Ofertas.cshtml" />
+    <None Include="Views\Empleo\OfertasProvincia.cshtml" />
+    <None Include="Views\Home\AcercaDe.cshtml" />
+    <None Include="Views\Home\Error.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Politica.cshtml" />
+    <None Include="Views\Home\PoliticaCookies.cshtml" />
+    <None Include="Views\Home\TrabajandoEnEllo.cshtml" />
+    <None Include="Views\Shared\Components\VC_Footer\Default.cshtml" />
+    <None Include="Views\Shared\Components\VC_NavBar\Default.cshtml" />
+    <None Include="Views\Shared\Components\VC_Header\Default.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_Layout_admin.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="wwwroot\assets\webfonts\icons8-aplicación-telegrama.svg" />
+    <None Include="wwwroot\assets\webfonts\icons8-facebook-nuevo.svg" />
+    <None Include="wwwroot\assets\webfonts\icons8-linkedin-rodeado-de-círculo.svg" />
+    <None Include="wwwroot\assets\webfonts\icons8-twitter-circled.svg" />
+    <None Include="wwwroot\assets\webfonts\telegram-brands.svg" />
+    <None Include="wwwroot\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\js\Empleo\Ofertas\BanderasHover.js" />
+    <None Include="wwwroot\js\Empleo\Ofertas\CarouselOfertas.js" />
+    <None Include="wwwroot\js\Empleo\Ofertas\ModalProvincias.js" />
+    <None Include="wwwroot\js\Home\Curso.js" />
+    <None Include="wwwroot\js\Home\Noticia.js" />
+    <None Include="wwwroot\js\jquery-3.5.1.min.js" />
+    <None Include="wwwroot\js\Layout\BuscadorDinamicoCards.js" />
+    <None Include="wwwroot\js\Layout\BuscadorDinamicoTable.js" />
+    <None Include="wwwroot\js\Layout\Navbar.js" />
+    <None Include="wwwroot\js\Layout\RevealX.js" />
+    <None Include="wwwroot\js\Layout\RevealY.js" />
+    <None Include="wwwroot\js\popper.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.SEOHelper" Version="1.0.1" />
+    <PackageReference Include="Boxed.AspNetCore.TagHelpers" Version="5.1.0" />
+    <PackageReference Include="CodeHollow.FeedReader" Version="1.2.1" />
+    <PackageReference Include="DotNetOpenAuth.AspNet" Version="4.3.4.13329" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.34" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.18" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SyndicationFeed.ReaderWriter" Version="1.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.0-beta.2" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+    <PackageReference Include="Serilog.Filters.Expressions" Version="2.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.ServiceModel.Syndication" Version="5.0.0" />
+    <PackageReference Include="System.ServiceModel.Web" Version="1.0.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logs\" />
+    <Folder Include="wwwroot\assets\Documents\" />
+  </ItemGroup>
+
+</Project>

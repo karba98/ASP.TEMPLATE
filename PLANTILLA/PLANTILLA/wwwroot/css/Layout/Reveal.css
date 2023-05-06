@@ -1,0 +1,42 @@
+﻿.revealY {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 1s all ease;
+}
+
+    .revealY.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+.revealX {
+    position: relative;
+    transform: translateX(150px);
+    opacity: 0;
+    transition: 1s all ease;
+}
+
+    .revealX.active {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    /*
+        Se elimina transformX en pantallas inferiores a 1410px
+        ya que se genera un width extra de 150px
+    */
+@media (max-width: 1410px) {
+    .revealX {
+        position: relative;
+        transform: translateY(150px);
+        opacity: 0;
+        transition: 1s all ease;
+    }
+
+        .revealX.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+}

@@ -1,0 +1,126 @@
+﻿@using PLANTILLA.Models
+@model DataContainer
+
+
+@{
+    List<Empleo> lastOfertas = Model.ofertas;
+    List<Article> otrasNoticias = Model.otras_noticias;
+    List<Article> noticias = Model.noticias;
+    string alt = "alt";
+}
+<link href="~/css/Home/Index.css" rel="stylesheet" />
+<link href="~/css/Home/Cursos.css" rel="stylesheet" />
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574149679941923"
+        crossorigin="anonymous"></script>
+<!-- VYP-DetallesOferta-2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1574149679941923"
+     data-ad-slot="7470256981"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="cards revealY">
+    @if (lastOfertas != null)
+    {
+        @foreach (Empleo emp in lastOfertas.Take(3))
+        {
+            <div class="card revealX">
+                <img src="~/assets/images/empleo/@(emp.Categoria).jpg" onerror="this.src='/assets/images/error_display_image.png';" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@emp.Titulo</h5>
+                    <p class="card-text"><small class="text-muted">@emp.FechaString</small></p>
+                    <a asp-controller="Empleo"
+               asp-action="Oferta"
+               asp-route-provincia="@emp.Provincia"
+               asp-route-fecha="@emp.FechaString"
+               asp-route-titulo="@emp.Titulo" class="stretched-link"></a>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@if (otrasNoticias != null)
+{
+    @for (int i = 0; i < otrasNoticias.Take(3).Count(); i++)
+    {
+        if (i % 2 == 0)
+        {
+            alt = "";
+        }
+        else
+        {
+            alt = "alt";
+        }
+        <div class="blog-card revealY @alt">
+            <div class="meta">
+                <div class="photo" style="background-image: url(@otrasNoticias[i].Img)"></div>
+                <ul class="details">
+                    <li class="author"><a href="#">Vigilancia y Proteccion</a></li>
+                    <li class="tags">
+                        <ul>
+                            <li><a>#Noticia</a></li>
+                            <li><a>#vigilante</a></li>
+                            <li><a>#seguridad</a></li>
+                        </ul>
+                    </li>
+                    <li class="date">@otrasNoticias[i].FechaPub</li>
+                </ul>
+            </div>
+            <div class="description">
+                <h1>@otrasNoticias[i].Titulo</h1>
+                <p>@otrasNoticias[i].FechaPub</p>
+                <p class="read-more">
+
+                </p>
+            </div>
+            <a asp-controller="Home"
+       asp-action="DetallesNoticia"
+       asp-route-title="@otrasNoticias[i].TitleUrl"
+       asp-route-fecha="@otrasNoticias[i].FechaPubUrl" class="stretched-link"></a>
+        </div>
+    }
+
+}
+<div class="cards revealY">
+    <div class="card">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574149679941923"
+                crossorigin="anonymous"></script>
+        <!-- VYP-DetallesOferta-2 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1574149679941923"
+             data-ad-slot="7470256981"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+
+    @if (noticias != null)
+    {
+        @foreach (Article n in noticias.Take(2))
+        {
+            <div class="card revealX">
+                <img src="@n.Img" onerror="this.src='/assets/images/error_display_image.png';" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@n.Titulo</h5>
+                    <p class="card-text"><small class="text-muted">@n.FechaPub</small></p>
+                </div>
+                <a asp-controller="Home"
+           asp-action="DetallesNoticia"
+           asp-route-title="@n.TitleUrl"
+           asp-route-fecha="@n.FechaPubUrl" class="stretched-link"></a>
+            </div>
+
+        }
+    }
+</div>
+

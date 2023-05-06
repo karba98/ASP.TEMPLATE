@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Portal Vigilancia y protecion - Admin";
+    Layout = "_Layout_admin";
+}
+@section scripts{
+    <script language="javascript" src="~/js/Empleo/Empleo.Filtro.js"></script>
+}
+    <h1>Filtro palabras de ofertas</h1>
+    <hr />
+    <table id="tablaform">
+        <thead>
+            <tr>
+                <td>
+                    <a class="bi bi-trash2-fill delete btnaction" onclick="insertWord()">
+                        <img src="/assets/webfonts/addicon.png" alt="Bootstrap" width="23" height="23">
+                    </a>
+                </td>
+                <td><input type="text" id="inputText" /></td>
+            </tr>
+        </thead>
+
+    </table>
+    <table id="tablapalabras">
+        <thead>
+            <tr>
+                <td>
+                </td>
+                <td></td>
+            </tr>
+        </thead>
+
+    </table>

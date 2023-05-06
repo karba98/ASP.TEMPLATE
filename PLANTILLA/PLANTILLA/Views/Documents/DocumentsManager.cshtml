@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewData["Title"] = "DocumentsManager";
+    Layout = "_Layout_admin";
+}
+@model List<Fichero>
+@section styles{
+    <style>
+        .pdfi{height:30px;
+        margin-right:20px;
+        margin-top:10px;}
+    </style>
+
+}
+<div id="banner-wrapper" style="margin-bottom: 15px;">
+    <div id="banner" class="box container" style="box-shadow: #000 1px 0 10px;background-color:white;padding:15px;">
+         <form method="post" enctype="multipart/form-data" asp-action="DocumentsManager">
+            @Html.AntiForgeryToken()
+            <span>Seleccione PDF: </span>
+            <input type="file" name="postedFiles" accept=".pdf" class="form-group" />
+            <div class="form-group">
+                <label  class="control-label"></label>
+                <textarea name="descripcion" class="form-control" style="resize:vertical;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-light">Cargar</button>
+            <br />
+        </form>
+    </div>
+</div>
+
+
+@section scripts{
+ <script language="javascript">
+        function doSearch()
+        {
+            const tableReg = document.getElementById('datos');
+            const searchText = document.getElementById('searchTerm').value.toLowerCase();
+
+            const nosearch = document.getElementsByClassName('noSearch');
+            let total = 0;
+ 
+            // Recorremos todas las filas con contenido de la tabla
+            for (let i = 1; i < tableReg.rows.length; i++) {
+                // Si el td tiene la clase "noSearch" no se busca en su cntenido
+                if (tableReg.rows[i].classList.contains("noSearch")) {
+                    continue;
+                }
+ 
+                let found = false;
+                const cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+                // Recorremos todas las celdas
+                for (let j = 0; j < cellsOfRow.length && !found; j++) {
+                    const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                    // Buscamos el texto en el contenido de la celda
+                    if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
+                        found = true;
+                        total++;
+                    }
+                }
+                if (found) {
+                    tableReg.rows[i].style.display = '';
+                } else {
+                    // si no ha encontrado ninguna coincidencia, esconde la
+                    // fila de la tabla
+                    tableReg.rows[i].style.display = 'none';
+                }
+            }
+ 
+            // mostramos las coincidencias
+            const lastTR=tableReg.rows[tableReg.rows.length-1];
+            const td=lastTR.querySelector("td");
+            lastTR.classList.remove("hide", "red");
+            if (searchText == "") {
+                lastTR.classList.add("hide");
+            } else if (total) {
+                nosearch.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
+            } else {
+                lastTR.classList.add("red");
+                nose.innerHTML="No se han encontrado coincidencias";
+            }
+        }
+    </script>
+}
+<div id="banner-wrapper" style="margin-bottom: 15px;">
+    <div id="banner" class="box container" style="box-shadow: #000 1px 0 10px;background-color:white;padding:15px;">
+        <h2 style="padding:15px;">Documentación</h2>
+        <hr />
+         <form>
+             
+        <input id="searchTerm" type="text" onkeyup="doSearch()" placeholder="Buscar Documento" />
+    </form>
+ <table id="datos">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>         <tr>
+            <td class="noSearch"></td>
+            <td></td>
+            <td></td>
+        </tr>
+       @if(Model!=null){
+            @foreach(Fichero e in Model)
+            {
+                 <tr>
+                    <td><a href="@Url.Action("DocumentDelete", new { filename = e.Name })" styles="color:red">Eliminar</a></td>
+                    <td><a href="@Url.Action("DocumentDownload", new { filename = e.Name })"> <img class="pdfi" src=~/assets/images/pdficon.png/></a></td>
+                    <td>@e.Name</td>
+                 </tr>     
+                  <tr>
+                     <td colspan="3">
+                         <form>
+                            <textarea class="form-control" style="resize:vertical;" disabled >@e.Description</textarea>
+                        </form>
+                     </td>
+                 </tr>
+            }
+       }
+        </tbody>
+
+      </table>
+
+    </div>
+</div>
+

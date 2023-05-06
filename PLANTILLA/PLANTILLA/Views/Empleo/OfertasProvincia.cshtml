@@ -1,0 +1,113 @@
+﻿@model IEnumerable<PLANTILLA.Models.Empleo>
+
+@section styles{
+
+<link href="~/css/Empleo/Ofertas.css" rel="stylesheet" />
+}
+@section scripts{
+<script language="javascript" src="~/js/Layout/BuscadorDinamicoCards.js"></script>
+<script language="javascript" src="~/js/Empleo/Ofertas/ModalProvincias.js"></script>
+<script language="javascript" src="~/js/Empleo/Ofertas/BanderasHover.js"></script>
+}
+
+<hr />
+<div class="ofertas_banner_title">
+    <h2 class="ofertas_title">
+        Ofertas Destacadas en @ViewBag.ProvinciaName
+    </h2>
+    <hr />
+</div>
+
+<button id="mySizeChart" class="btn_provincias revealX">
+    <span><img class="img_bandera_pequeña" src="@(ViewBag.MetaImg)" /></span>
+    Buscar por provincias
+</button>
+<div id="mySizeChartModal" class="ebcf_modal">
+
+    <div class="ebcf_modal-content">
+        <span class="ebcf_close">&times;</span>
+        <form class="input_provincias">
+            <input type="search" id="searchTerm" onkeyup="doSearch()"
+                   placeholder="Buscar provincia" />
+        </form>
+        @if (ViewBag.Provincias != null)
+        {
+            <div class="cards" id="datos_card">
+                @foreach (var item in ViewBag.Provincias)
+                {
+                    <div class="card"
+                 onmouseout="undoHover(this,'/assets/images/provincias/banderas/@(item.Value).png')"
+                 onmouseover="doHover(this)"
+                 style="background-image:url('/assets/images/provincias/banderas/@(item.Value).png')">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Key</h5>
+                            <a asp-controller="Empleo"
+                       asp-action="OfertasProvincia"
+                       asp-route-provincia="@item.Value" class="stretched-link"></a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+</div>
+
+
+@if (Model != null && Model.Count()>0)
+{
+    <div class="cards revealX" id="datos">
+        @foreach (var item in Model)
+        {
+            <div class="card zoom revealX">
+                <img src="~/assets/images/empleo/@(item.Categoria).jpg"
+             onerror="this.src='/assets/images/error_display_image.png';" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Titulo</h5>
+                    <p class="card-text"><small class="text-muted">@item.FechaString</small></p>
+                    <a asp-controller="Empleo"
+               asp-action="Oferta"
+               asp-route-provincia="@item.Provincia"
+               asp-route-fecha="@item.FechaString"
+               asp-route-titulo="@item.Titulo" class="stretched-link"></a>
+                </div>
+            </div>
+        }
+    </div>
+}
+@if (Model == null || Model.Count() == 0)
+{
+    <h2>No hay ofertas disponibles en @ViewBag.ProvinciaName.</h2>
+}
+
+
+<hr />
+<h2 class="ofertas_title">Ofertas Destacadas</h2>
+<hr />
+@if (Model != null && Model != null && Model.Count()>0)
+{
+    <div class="cards revealY">
+        @foreach (var item in ViewBag.TopOfertas)
+        {
+            <div class="card revealX zoom">
+                <img src="~/assets/images/empleo/@(item.Categoria).jpg" 
+                onerror="this.src='/assets/images/error_display_image.png';" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Titulo</h5>
+                    <p class="card-text"><small class="text-muted">@item.FechaString</small></p>
+                    <a asp-controller="Empleo"
+               asp-action="Oferta"
+               asp-route-provincia="@item.Provincia"
+               asp-route-fecha="@item.FechaString"
+               asp-route-titulo="@item.Titulo" class="stretched-link"></a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+
+
+
+
+

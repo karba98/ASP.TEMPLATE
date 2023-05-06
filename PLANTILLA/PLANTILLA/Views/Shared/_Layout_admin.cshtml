@@ -1,0 +1,87 @@
+﻿@using System.Web
+<!doctype html>
+<html lang="es">
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="icon" href="/assets/images/logo2.ico">
+
+    @{
+        var url = string.Format("{0}://{1}{2}{3}",
+        Context.Request.Scheme,
+        Context.Request.Host,
+        Context.Request.Path,
+        Context.Request.QueryString.ToUriComponent());
+        var urlencoded = System.Net.WebUtility.UrlEncode(url);
+    }
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="raulkarba">
+
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="@ViewBag.Url">
+    <meta property="og:title" content="Portal Vigilancia y Protecion - @(ViewBag.MetaTitle)">
+    <meta property="og:description" content="@ViewBag.MetaDescription">
+    <meta property="og:image" content="@(ViewBag.MetaImg)">
+    <meta property="og:image:url" content="@(ViewBag.MetaImg)">
+    <meta property="og:image:secure_url" content="@(ViewBag.MetaImg)">
+    <meta property="og:image:width" content="314">
+    <meta property="og:image:heigh" content="200">
+
+    <!-- Primary Meta Tags -->
+    <title>Portal Vigilancia y protecion</title>
+    <meta name="title" content="Portal Vigilancia y Protecion - @(ViewBag.MetaTitle)">
+    <meta name="description" content="@ViewBag.MetaDescription">
+    <meta name="image" content="@(ViewBag.MetaImg)">
+
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="@ViewBag.Url">
+    <meta property="twitter:title" content="Portal Vigilancia y Protecion - @(ViewBag.MetaTitle)">
+    <meta property="twitter:description" content="@ViewBag.MetaDescription">
+    <meta property="twitter:image" content="@(ViewBag.MetaImg)">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/css/Layout/Main.css" rel="stylesheet" />
+    <link href="~/css/Footer/Footer.css" rel="stylesheet" />
+    <link href="~/css/Layout/Reveal.css" rel="stylesheet" />
+    <link href="~/css/Layout/Icons.css" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet">
+
+    @RenderSection("styles",false)
+
+</head>
+<body>
+    @await Component.InvokeAsync("VC_NavBar")
+    <section class="py-5 text-white">
+        <div class="container py-4" style="background-color:black;">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <script src="~/js/jquery-3.5.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <script src="~/js/Layout/Navbar.js"></script>
+
+    <script language="javascript" src="~/js/Layout/RevealY.js"></script>
+    <script language="javascript" src="~/js/Layout/RevealX.js"></script>
+
+    @RenderSection("scripts", false)
+</body>
+<footer id="footer" class="footer-1">
+    @await Component.InvokeAsync("VC_Footer")
+</footer>
+</html>
