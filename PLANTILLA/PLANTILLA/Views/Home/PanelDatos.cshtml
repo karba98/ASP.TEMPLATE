@@ -3,9 +3,16 @@
 
 
 @{
-    List<Empleo> lastOfertas = Model.ofertas;
-    List<Article> otrasNoticias = Model.otras_noticias;
-    List<Article> noticias = Model.noticias;
+    List<Empleo> lastOfertas = null;
+    List<Article> otrasNoticias = null;
+    List<Article> noticias = null;
+
+    if (Model != null)
+    {
+        lastOfertas = Model.ofertas;
+        otrasNoticias = Model.otras_noticias;
+        noticias = Model.noticias;
+    }
     string alt = "alt";
 }
 <link href="~/css/Home/Index.css" rel="stylesheet" />
