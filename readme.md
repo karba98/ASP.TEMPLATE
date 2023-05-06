@@ -1,42 +1,49 @@
 ##
    <h1 align="center">
-    <img width="10%" src="https://user-images.githubusercontent.com/49042638/236624506-bd310e11-4018-4e9a-8408-69627e806238.png" align="left">
+    <img width="10%" src="https://user-images.githubusercontent.com/49042638/236642407-f4311613-fa15-44b6-8c11-b6ad6ca3bd82.png" align="left">
    </h1>
+   
+# 🌐 ASP .NET CORE MVC (Web + API)
 
-   # Vigilancia y Protección
+Este proyecto consiste en una aplicación web desarrollada en ASP .NET Core MVC que se conecta a una API de datos llamada DEDOMENA para mostrar al usuario ofertas de empleo, cursos y artículos de un nicho concreto. DEDOMENA se encarga de almacenar todas las ofertas de empleo en una base de datos MySQL y obtener noticias y artículos de distintas fuentes RSS. Además, automáticamente actualiza las ofertas de empleo en base a fuentes RSS como Infojobs, Infoempleo, Jooble, entre otros.
 
-   #### Raúl Castro de la Torre
+## Características de la parte cliente
 
-***
-<br>
-<br>
+La parte cliente de esta aplicación web cuenta con las siguientes secciones:
 
+- **Noticias**: Sección donde se muestran las últimas noticias relacionadas con el nicho.
+- **Empleo**: Sección donde se muestran las ofertas de empleo más recientes relacionadas con el nicho.
+- **Cursos**: Sección donde se muestran los cursos de formación y actualización para profesionales del sector del nicho.
+- **Artículos**: Sección donde se muestran artículos de opinión, análisis y consejos sobre el nicho.
 
+## Arquitectura del proyecto
 
-Vigilancia y Protección es una web sin ánimo de lucro basada en información sobre Seguridad Privada. Desde 2021, ofrecemos una información integral sobre Seguridad Privada con el fin de ayudar a la imagen de nuestros Vigilantes de Seguridad, Vigilantes de Explosivos, Detectives Privados etc…
+La arquitectura del proyecto se compone de las siguientes partes:
 
-## Características
+- **Parte Cliente**: La aplicación web desarrollada en ASP .NET Core MVC.
+- **API de datos (DEDOMENA)**: API que se encarga de acceder a los datos de ofertas de empleo, cursos, licitaciones y demás datos extraídos de bases de datos y fuentes RSS.
+- **API de notificaciones (ICARO)**: API que se encarga de enviar notificaciones a redes sociales concretas como Facebook, Twitter o LinkedIn.
 
-- Noticias: Sección donde se publican las últimas noticias relacionadas con la Seguridad Privada en España y el mundo.
-- Empleo: Sección donde se publican las ofertas de empleo para Vigilantes de Seguridad y otros profesionales del sector.
-- Cursos: Sección donde se publican los cursos de formación y actualización para Vigilantes de Seguridad y otros profesionales del sector.
-- Licitaciones: Sección donde se publican las licitaciones públicas y privadas para contratos de vigilancia y seguridad.
-- Artículos: Sección donde se publican artículos de opinión, análisis y consejos sobre Seguridad Privada.
+## Configuración del proyecto
 
-## Funcionamiento
+Para configurar y ejecutar el proyecto se deben seguir los siguientes pasos:
 
-Este proyecto emplea recursos de https://vigilanciayproteccion.es/ 
+1. Crear la base de datos ejecutando en MySQL el DDL de estructura y después insertar algunos datos de prueba usando el DML.
+2. Abrir el proyecto en Visual Studio 2019 o superior.
+3. Instalar las dependencias en cada una de las 3 soluciones.
+4. Ejecutar en este orden: ICARO, DEDOMENA y WEB.
 
-La web funciona con WordPress, un sistema de gestión de contenidos (CMS) que permite crear y administrar fácilmente una web dinámica. WordPress utiliza una base de datos MySQL para almacenar la información y un lenguaje de programación PHP para generar las páginas web.
+## Licencia
 
-La web utiliza un tema personalizado basado en el framework Bootstrap, que facilita el diseño responsive y adaptativo a diferentes dispositivos. La web también utiliza varios plugins para mejorar el rendimiento, la seguridad y la funcionalidad de la web, como:
-
-- Jetpack: Un plugin que ofrece varias características como estadísticas, seguridad, optimización de imágenes, redes sociales, etc.
-- Yoast SEO: Un plugin que ayuda a mejorar el posicionamiento web en los buscadores mediante la optimización del contenido, los metadatos, los enlaces, etc.
-- WPForms: Un plugin que permite crear y gestionar formularios de contacto, suscripción, encuestas, etc.
-- Akismet: Un plugin que filtra y elimina los comentarios spam.
+Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
 
 ## Contacto
 
-Si quieres contactar con nosotros, puedes hacerlo a través del formulario de contacto que encontrarás en la web o enviando un correo electrónico a info@vigilanciayproteccion.website. Estaremos encantados de atender tus consultas, sugerencias o colaboraciones.
-Men
+Puedes contactarnos a través de nuestras redes sociales:
+
+- 📱 Twitter: [@raulkarba](https://twitter.com/raulkarba)
+- 💼 LinkedIn: [Raúl Castro](https://www.linkedin.com/in/ra%C3%BAl-castro-de-la-torre-861508103/)
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
