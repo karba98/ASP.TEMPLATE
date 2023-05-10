@@ -48,7 +48,7 @@ namespace PLANTIILLA.DEDOMENA.Repositories
                 DateTime fecha = DateTime.UtcNow;
                 //String format = "dddd,dd MMMM, yyyy";
                 //DateTime fecha = DateTime.Now;
-                string fechaString = fecha.ToString(format);
+                string fechaString = fecha.ToString(format, CultureInfo.InvariantCulture);
                 Empleo empleo = new Empleo()
                 {
                     Id = GetNewMaxId(),
@@ -91,6 +91,10 @@ namespace PLANTIILLA.DEDOMENA.Repositories
             string email,
             string fechaString)
         {
+            if (IsInBlackList(titulo) || IsInBlackList(Descripcion))
+            {
+                return null;
+            }
             string format = "dd/MM/yyyy HH:mm:ss tt";
             DateTime fecha = DateTime.UtcNow;
 
@@ -108,7 +112,7 @@ namespace PLANTIILLA.DEDOMENA.Repositories
                 Categoria = Categoria,
                 Telefono = telefono,
                 Email = email,
-                FechaString = fecha.ToString(format),
+                FechaString = fecha.ToString(format,provider),
                 //FechaString = fechaString,
                 Publicado = 0
 

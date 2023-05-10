@@ -22,7 +22,6 @@ namespace PLANTIILLA.DEDOMENA.Controllers
         readonly RepositoryEmpleoBR _repoEmpleoBR;
         readonly RepositoryEmpleo _repoEmpleo;
 
-        readonly Service_ARSEPRI _service_arsepri;
         readonly Service_INFOJOBS _service_infojobs;
         readonly Service_INDEED _service_indeed;
 
@@ -33,7 +32,6 @@ namespace PLANTIILLA.DEDOMENA.Controllers
         ILogger<EmpleoController> logger,
         RepositoryEmpleoBR repoEmpleoBR,
         RepositoryEmpleo _repoEmpleo,
-        Service_ARSEPRI _service_arsepri,
         Service_INFOJOBS _service_infojobs,
         Service_INDEED _service_indeed,
         SwitchEmpleo swEmpleo,
@@ -43,7 +41,6 @@ namespace PLANTIILLA.DEDOMENA.Controllers
             this._repoEmpleoBR = repoEmpleoBR;
             this._repoEmpleo = _repoEmpleo;
             this._logger = logger;
-            this._service_arsepri = _service_arsepri;
             this._service_indeed = _service_indeed;
             this._service_infojobs = _service_infojobs;
             this.swEmpleo = swEmpleo;

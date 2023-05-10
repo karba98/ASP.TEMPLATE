@@ -8,7 +8,6 @@ namespace PLANTIILLA.DEDOMENA.Clases
 {
     public class Refreshers
     {
-        readonly Service_ARSEPRI _service_arsepri;
         readonly Service_INFOJOBS _service_infojobs;
         readonly Service_INDEED _service_indeed;
 
@@ -21,7 +20,6 @@ namespace PLANTIILLA.DEDOMENA.Clases
             RepositoryEmpleoBR repoEmpleoBR,
             RepositoryEmpleo _repoEmpleo,
 
-            Service_ARSEPRI _service_arsepri,
             Service_INFOJOBS _service_infojobs,
             Service_INDEED _service_indeed,
             Service_JOOBLE _Service_JOOBLE,
@@ -30,7 +28,6 @@ namespace PLANTIILLA.DEDOMENA.Clases
             this._repoEmpleoBR = repoEmpleoBR;
             this._repoEmpleo = _repoEmpleo;
 
-            this._service_arsepri = _service_arsepri;
             this._service_indeed = _service_indeed;
             this._service_infojobs = _service_infojobs;
             this._Service_JOOBLE = _Service_JOOBLE;
@@ -134,48 +131,6 @@ namespace PLANTIILLA.DEDOMENA.Clases
                     }
                 }
                 return empleo_indeed;
-            }
-            else
-            {
-                return new List<EmpleoBR>();
-            }
-        }
-        public async Task<List<EmpleoBR>> RefreshOfertasArsepri()
-        {
-            List<Empleo> empleo_arsepri_rss = await _service_arsepri.GetFeed(null);
-            List<EmpleoBR> empleo_arsepri = new List<EmpleoBR>();
-            foreach (Empleo e in empleo_arsepri_rss)
-            {
-                empleo_arsepri.Add(swEmpleo.EmpleoToEmpleoBR(e));
-            }
-
-            //actualiza borradores con las nmuevas de indeed
-            if (empleo_arsepri.Count > 0)
-            {
-                //devuelve una lista de empleos que no estan en la base de datos de borradores ni publicas
-                empleo_arsepri = _repoEmpleo.CompareAllWithDB(empleo_arsepri);
-                empleo_arsepri = _repoEmpleoBR.CompareAllWithDB(empleo_arsepri);
-                if (empleo_arsepri.Count > 0)
-                {
-                    //Metemos las nuevas ofertas en borradores
-                    foreach (EmpleoBR e in empleo_arsepri)
-                    {
-                        bool inserted = _repoEmpleoBR.InsertEmpleoBR(
-                            e.Titulo,
-                            e.Descripcion,
-                            e.Salario,
-                            e.Url,
-                            e.Provincia,
-                            e.Categoria,
-                            e.Telefono,
-                            e.Email, "B", e.FechaPub);
-                        if (inserted == false)
-                        {
-                            empleo_arsepri.Remove(e);
-                        }
-                    }
-                }
-                return empleo_arsepri;
             }
             else
             {

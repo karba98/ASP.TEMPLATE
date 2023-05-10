@@ -66,8 +66,6 @@ namespace PLANTIILLA.DEDOMENA.Helpers
             services.AddTransient<FileService>();
             services.AddTransient<EmpleoUpdater>();
             services.AddTransient<PathProvider>();
-            services.AddTransient<Service_ARSEPRI_LICIT>();
-            services.AddTransient<Service_ARSEPRI>();
             services.AddTransient<Service_INFOJOBS>();
             services.AddTransient<Service_INDEED>();
             services.AddTransient<Service_JOOBLE>();

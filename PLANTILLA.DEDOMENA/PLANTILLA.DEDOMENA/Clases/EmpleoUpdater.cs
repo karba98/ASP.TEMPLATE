@@ -15,7 +15,6 @@ namespace PLANTIILLA.DEDOMENA.Clases
         readonly RepositoryEmpleoBR _repoEmpleoBR;
         readonly RepositoryEmpleo _repoEmpleo;
 
-        readonly Service_ARSEPRI _service_arsepri;
         readonly Service_INFOJOBS _service_infojobs;
         readonly Service_INDEED _service_indeed;
         readonly Service_ICARO _service_icaro;
@@ -28,7 +27,6 @@ namespace PLANTIILLA.DEDOMENA.Clases
         ILogger<EmpleoUpdater> logger,
         RepositoryEmpleoBR repoEmpleoBR,
         RepositoryEmpleo _repoEmpleo,
-        Service_ARSEPRI _service_arsepri,
         Service_INFOJOBS _service_infojobs,
         Service_INDEED _service_indeed,
         Service_ICARO service_icaro,
@@ -38,7 +36,6 @@ namespace PLANTIILLA.DEDOMENA.Clases
             this._repoEmpleoBR = repoEmpleoBR;
             this._repoEmpleo = _repoEmpleo;
             this._logger = logger;
-            this._service_arsepri = _service_arsepri;
             this._service_indeed = _service_indeed;
             this._service_infojobs = _service_infojobs;
             this._service_icaro = service_icaro;
@@ -55,7 +52,6 @@ namespace PLANTIILLA.DEDOMENA.Clases
             Refreshers refresh = new Refreshers(
                 _repoEmpleoBR,
                 _repoEmpleo,
-                _service_arsepri, 
                 _service_infojobs, 
                 _service_indeed, 
                 _Service_JOOBLE,
@@ -98,19 +94,6 @@ namespace PLANTIILLA.DEDOMENA.Clases
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message + "\n" + ex.StackTrace + "\n" + ex.InnerException);
-            }
-            try
-            {
-                var task3 = refresh.RefreshOfertasArsepri();
-                if (await Task.WhenAny(task3, Task.Delay(timeout)) == task3)
-                {
-                    nuevo_empleo.AddRange(task3.Result);
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message + "\n" + ex.StackTrace + "\n" + ex.InnerException);
-                Console.WriteLine(ex.Message);
             }
 
             if (nuevo_empleo.Count > 0) { return nuevo_empleo.Count; }

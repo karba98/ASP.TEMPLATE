@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using PLANTIILLA.DEDOMENA.Data;
 using PLANTIILLA.DEDOMENA.Helpers;
@@ -36,7 +37,7 @@ namespace PLANTIILLA.DEDOMENA.Repositories
                 String format = "dd/MM/yyyy HH:mm:ss tt";
                 DateTime fecha = DateTime.UtcNow.AddHours(1);
 
-                String fechaString = fecha.ToString(format);
+                String fechaString = fecha.ToString(format, CultureInfo.InvariantCulture);
                 EmpleoBR EmpleoBR = new EmpleoBR()
                 {
                     Id = GetMaxId(),
