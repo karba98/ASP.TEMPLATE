@@ -83,7 +83,7 @@ namespace PLANTILLA.ICARO.Helpers
                 string titulo = oferta.titulo;
                 dynamic messagePost = new ExpandoObject();
                 //messagePost.access_token = accessToken;
-                //messagePost.picture = "https://vigilanciayproteccion.website/img/" + provincia + ".jpg";
+                //messagePost.picture = "https://../img/" + provincia + ".jpg";
                 messagePost.link = url.AbsoluteUri;
                 //messagePost.name = titulo;
                 //messagePost.caption = titulo;

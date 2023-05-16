@@ -51,7 +51,7 @@ namespace PLANTIILLA.DEDOMENA.Services
                             e.Descripcion,
                             "empleo",
                             "fjcastro",
-                            "https://vigilanciayproteccion.website/Empleo/Oferta?provincia=" + p + "&fecha=" + System.Net.WebUtility.UrlEncode(e.FechaString),
+                            "https://../Empleo/Oferta?provincia=" + p + "&fecha=" + System.Net.WebUtility.UrlEncode(e.FechaString),
                             fecha
                         );
                         list.Add(post);

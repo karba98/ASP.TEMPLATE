@@ -22,7 +22,7 @@ namespace PLANTILLA.Helpers
                 "otros",
             "infojobs",
             "linkedin",
-            "vigilanciayproteccion",
+            "..",
             "indeed",
             "vsofertasserias",
             "jobatus",

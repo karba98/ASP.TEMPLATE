@@ -59,7 +59,7 @@ namespace PLANTIILLA.DEDOMENA.Services
             var format = "dddd, dd MMMM , yyyy";
             try
             {
-                var url = "https://vigilanciayproteccion.es/" + f + title;
+                var url = "https://..//" + f + title;
                 if (f == null && title == null) return null;
                 url += "feed?withoutcomments=1";
                 var feed = await FeedReader.ReadAsync(url);
@@ -108,7 +108,7 @@ namespace PLANTIILLA.DEDOMENA.Services
             try
             {
                 List<Curso> cursos = new List<Curso>();
-                var url = "https://vigilanciayproteccion.es/category/cursos/" + category + "feed/";
+                var url = "https://..//category/cursos/" + category + "feed/";
                 var feed = await FeedReader.ReadAsync(url);
                 foreach (var item in feed.Items)
                 {

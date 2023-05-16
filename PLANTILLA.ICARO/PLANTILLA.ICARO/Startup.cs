@@ -91,11 +91,11 @@ namespace PLANTILLA.ICARO
                     Title = "VYPPORTAL - ICARO",
                     Description = "Sandbox para acciones de publicación en redes sociales del Portal Vigilancia y Proteccion",
                     //TermsOfService = new Uri("https://example.com/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Vigilancia y proteccion",
-                        Url = new Uri("https://vigilanciayproteccion.website")
-                    },
+                    //Contact = new OpenApiContact
+                    //{
+                    //    Name = "",
+                    //    Url = new Uri("https://../")
+                    //},
                     //License = new OpenApiLicense
                     //{
                     //    Name = "Example License",

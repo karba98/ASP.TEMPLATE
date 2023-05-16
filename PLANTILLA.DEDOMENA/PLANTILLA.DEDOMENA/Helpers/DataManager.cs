@@ -22,7 +22,7 @@ namespace PLANTIILLA.DEDOMENA.Helpers
                 "otros",
             "infojobs",
             "linkedin",
-            "vigilanciayproteccion",
+            "..",
             "indeed",
             "vsofertasserias",
             "jobatus",

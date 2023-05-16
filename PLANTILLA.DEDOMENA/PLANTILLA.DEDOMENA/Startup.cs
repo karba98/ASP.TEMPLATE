@@ -118,11 +118,11 @@ namespace PLANTIILLA.DEDOMENA.Helpers
                     Title = "PLANTIILLA - DEDOMENA",
                     Description = "API de datos del Portal Vigilancia y Proteccion",
                     //TermsOfService = new Uri("https://example.com/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Vigilancia y proteccion",
-                        Url = new Uri("https://vigilanciayproteccion.website")
-                    },
+                    //Contact = new OpenApiContact
+                    //{
+                    //    Name = ""
+                    //    Url = new Uri("https://../")
+                    //},
                     //License = new OpenApiLicense
                     //{
                     //    Name = "Example License",

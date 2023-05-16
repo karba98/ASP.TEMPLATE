@@ -19,7 +19,7 @@ namespace PLANTIILLA.DEDOMENA.Services
 
             try
             {
-                List<Article> noticias = await GetArticles("https://vigilanciayproteccion.es/category/noticias/noticias-de-seguridad/feed/");
+                List<Article> noticias = await GetArticles("https://..//category/noticias/noticias-de-seguridad/feed/");
 
                 return noticias.FirstOrDefault();
             }
@@ -35,7 +35,7 @@ namespace PLANTIILLA.DEDOMENA.Services
 
             try
             {
-                List<Article> noticias = await GetArticles("https://vigilanciayproteccion.es/category/noticias/otras-noticias/feed/");
+                List<Article> noticias = await GetArticles("https://..//category/noticias/otras-noticias/feed/");
 
                 return noticias.FirstOrDefault();
             }
@@ -51,8 +51,8 @@ namespace PLANTIILLA.DEDOMENA.Services
 
             try
             {
-                List<Article> noticias = await GetArticles("https://vigilanciayproteccion.es/category/noticias/noticias-de-seguridad/feed/");
-                List<Article> noticias2 = await GetArticles("https://vigilanciayproteccion.es/category/noticias/otras-noticias/feed/");
+                List<Article> noticias = await GetArticles("https://..//category/noticias/noticias-de-seguridad/feed/");
+                List<Article> noticias2 = await GetArticles("https://..//category/noticias/otras-noticias/feed/");
                 noticias.AddRange(noticias2);
                 Article noticia = noticias.FirstOrDefault(x => x.FechaPubUrl == fecha && x.TitleUrl == title);
                 return noticia;
@@ -69,7 +69,7 @@ namespace PLANTIILLA.DEDOMENA.Services
 
             try
             {
-                List<Article> sentencias = await GetArticles("https://vigilanciayproteccion.es/category/otros/sentencias/feed/");
+                List<Article> sentencias = await GetArticles("https://..//category/otros/sentencias/feed/");
                 Article sentencia = sentencias.FirstOrDefault(x => x.FechaPubUrl == fecha && x.TitleUrl == title);
                 return sentencia;
             }
@@ -85,7 +85,7 @@ namespace PLANTIILLA.DEDOMENA.Services
 
             try
             {
-                List<Article> sentencias = await GetArticles("https://vigilanciayproteccion.es/category/otros/ciberseguridad/feed/");
+                List<Article> sentencias = await GetArticles("https://..//category/otros/ciberseguridad/feed/");
                 Article sentencia = sentencias.FirstOrDefault(x => x.FechaPubUrl == fecha && x.TitleUrl == title);
                 return sentencia;
             }
@@ -101,7 +101,7 @@ namespace PLANTIILLA.DEDOMENA.Services
 
             try
             {
-                List<Article> sentencias = await GetArticles("https://vigilanciayproteccion.es/category/otros/seguridad-laboral/feed/");
+                List<Article> sentencias = await GetArticles("https://..//category/otros/seguridad-laboral/feed/");
                 Article sentencia = sentencias.FirstOrDefault(x => x.FechaPubUrl == fecha && x.TitleUrl == title);
                 return sentencia;
             }

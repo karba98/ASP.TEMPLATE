@@ -56,7 +56,7 @@ namespace PLANTILLA.Controllers
         /// RSSs Noticias.
         /// </summary>
         /// <returns>
-        /// Genera RSS de noticias para campaña https://vigilanciayproteccion.es
+        /// Genera RSS de noticias para campaña https://../
         /// </returns>
         public async Task<IActionResult> RssNoticias()
         {
@@ -101,10 +101,10 @@ namespace PLANTILLA.Controllers
                 {
                     var rss = new RssFeedWriter(xmlWriter);
 
-                    await rss.WriteTitle("VigilanciaYProteccion");
+                    await rss.WriteTitle("..");
                     await rss.WriteDescription("Empleo");
                     await rss.WriteGenerator("Empleo");
-                    await rss.WriteValue("link", "https://vigilanciayproteccion.website");
+                    await rss.WriteValue("link", "https://../");
 
                     if (posts != null && posts.Count() > 0)
                     {

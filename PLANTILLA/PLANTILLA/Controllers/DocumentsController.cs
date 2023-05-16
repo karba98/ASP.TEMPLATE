@@ -128,7 +128,7 @@ namespace PLANTILLA.Controllers
             ViewBag.MetaTitle = "Documentos";
             ViewBag.Title = "Documentos";
             ViewBag.MetaDescription = "Documentos varios acerca de seguridad privada";
-            ViewBag.MetaImg = "https://vigilanciayproteccion.website/assets/images/logo_card.png";
+            ViewBag.MetaImg = "https://../assets/images/logo_card.png";
 
             return View(files);
         }

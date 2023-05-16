@@ -72,12 +72,12 @@ namespace PLANTIILLA.DEDOMENA.Controllers
                 Empleo oferta;
 
                 noticias = await service_noticias
-                    .GetArticles("https://vigilanciayproteccion.es/category/noticias/noticias-de-seguridad/feed/");
+                    .GetArticles("https://..//category/noticias/noticias-de-seguridad/feed/");
 
                 ofertas = _repoEmpleo.GetLast3Ofertas();
 
                 otras_noticias = await service_noticias
-                    .GetArticles("https://vigilanciayproteccion.es/category/noticias/otras-noticias/feed/");
+                    .GetArticles("https://..//category/noticias/otras-noticias/feed/");
 
                 cursos = await service_cursos.GetCursos();
                 var rnd = new Random();

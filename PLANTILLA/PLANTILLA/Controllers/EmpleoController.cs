@@ -47,7 +47,7 @@ namespace PLANTILLA
         {
             ViewBag.MetaTitle = "Ofertas de empleo";
             ViewBag.MetaDescription = "Ofertas de empleo";
-            ViewBag.MetaImg = "https://vigilanciayproteccion.website/assets/images/logo_card.png";
+            ViewBag.MetaImg = "https://../assets/images/logo_card.png";
 
             try
             {
@@ -81,7 +81,7 @@ namespace PLANTILLA
 
             ViewBag.TopOfertas = ofertas;
 
-            var urli = "https://vigilanciayproteccion.website/assets/images/provincias/banderas/" + provincia + ".png";
+            var urli = "https://../assets/images/provincias/banderas/" + provincia + ".png";
 
             ViewBag.MetaTitle = "Ofertas de empleo en " + provincia;
             ViewBag.MetaDescription = "Ofertas de empleo en " + provincia;
@@ -109,7 +109,7 @@ namespace PLANTILLA
                 {
                     ViewBag.MetaTitle = "Ofertas de empleo";
                     ViewBag.MetaDescription = "Ofertas de empleo";
-                    ViewBag.MetaImg = "https://vigilanciayproteccion.website/assets/images/logo_card.png";
+                    ViewBag.MetaImg = "https://../assets/images/logo_card.png";
                     return View();
                 }
                 else
@@ -126,7 +126,7 @@ namespace PLANTILLA
                     ViewBag.ProvinciaImg = provincia;
                     ViewBag.TopOfertas = ofertas;
 
-                    var urli = "https://vigilanciayproteccion.website/assets/images/provincias/banderas/" + provincia + ".png";
+                    var urli = "https://../assets/images/provincias/banderas/" + provincia + ".png";
                     ViewBag.MetaTitle = empleo.Titulo;
                     ViewBag.MetaDescription = empleo.Titulo;
                     ViewBag.MetaImg = urli;
@@ -141,7 +141,7 @@ namespace PLANTILLA
 
                 ViewBag.MetaTitle = "Ofertas de empleo";
                 ViewBag.MetaDescription = "Ofertas de empleo";
-                ViewBag.MetaImg = "https://vigilanciayproteccion.website/assets/images/logo_card.png";
+                ViewBag.MetaImg = "https://../assets/images/logo_card.png";
                 return View();
             }
         }
@@ -514,7 +514,7 @@ namespace PLANTILLA
 
                     var fecha = empleo_insertado.FechaString;
                     fecha = System.Net.WebUtility.UrlEncode(fecha);
-                    var myurl = "https://vigilanciayproteccion.website/Empleo/Oferta?provincia=" + empleo_insertado.Provincia + "&fecha=" + fecha;
+                    var myurl = "https://../Empleo/Oferta?provincia=" + empleo_insertado.Provincia + "&fecha=" + fecha;
 
                     empleo_insertado.UrlVigi = myurl;
                     return empleo_insertado;

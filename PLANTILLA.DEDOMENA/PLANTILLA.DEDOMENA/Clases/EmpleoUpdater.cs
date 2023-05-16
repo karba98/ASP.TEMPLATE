@@ -135,7 +135,7 @@ namespace PLANTIILLA.DEDOMENA.Clases
 
                                 string publicado = await _service_icaro.CallApi<string>(
                                   "poster/PostOferta", token_icaro,
-                                  "https://vigilanciayproteccion.website/Empleo/Oferta?provincia=" + oferta.Provincia + "&fecha=" + fecha,
+                                  "https://../Empleo/Oferta?provincia=" + oferta.Provincia + "&fecha=" + fecha,
                                   oferta.Provincia,
                                   oferta.Titulo)
                                     .ConfigureAwait(false);

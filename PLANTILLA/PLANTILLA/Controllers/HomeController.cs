@@ -47,14 +47,14 @@ namespace PLANTILLA.Controllers
             ViewBag.MetaTitle = "Inicio";
             ViewBag.Title = "Inicio";
             ViewBag.MetaDescription = "";
-            ViewBag.MetaImg = "https://vigilanciayproteccion.website/assets/images/logo_card.png";
+            ViewBag.MetaImg = "https://../assets/images/logo_card.png";
             return View();
         }
         public async Task<IActionResult> Noticias()
         {
             ViewBag.MetaTitle = "Noticias de vigilante seguridad";
             ViewBag.MetaDescription = "Noticias de vigilante seguridad";
-            ViewBag.MetaImg = "https://vigilanciayproteccion.website/assets/images/logo_card.png";
+            ViewBag.MetaImg = "https://../assets/images/logo_card.png";
             try
             {
                 List<Article> noticias = await _service.CallApi<List<Article>>(
@@ -62,7 +62,7 @@ namespace PLANTILLA.Controllers
                     null,
                     new Dictionary<string, string>()
                     {
-                        {"url","https://vigilanciayproteccion.es/category/noticias/noticias-de-seguridad/feed/" }
+                        {"url","https://..//category/noticias/noticias-de-seguridad/feed/" }
                     },
                     null, "GET");
                 return View(noticias);
@@ -82,7 +82,7 @@ namespace PLANTILLA.Controllers
                     null,
                     new Dictionary<string, string>()
                     {
-                        {"url","https://vigilanciayproteccion.es/category/noticias/noticias-de-seguridad/feed/" }
+                        {"url","https://..//category/noticias/noticias-de-seguridad/feed/" }
                     },
                     null, "GET"); 
                 noticias = noticias.Take(3).ToList();
@@ -112,7 +112,7 @@ namespace PLANTILLA.Controllers
                 ViewBag.MetaTitle = "Inicio";
                 ViewBag.Title = "Noticias de vigilante seguridad";
                 ViewBag.MetaDescription = "Noticias de vigilante seguridad";
-                ViewBag.MetaImg = "https://vigilanciayproteccion.website/assets/images/logo_card.png";
+                ViewBag.MetaImg = "https://../assets/images/logo_card.png";
                 _logger.LogError("title: [" + title + "] fecha:[" + fecha + "]"
                     + ex.Message + "\n" + ex.StackTrace + "\n" + ex.InnerException);
 

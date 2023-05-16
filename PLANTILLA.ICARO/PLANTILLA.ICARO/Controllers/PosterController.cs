@@ -76,7 +76,7 @@ namespace PLANTILLA.ICARO.Controllers
 
             //    //Twitter
             //    string output = await Twitterposter.Twitt("Nueva oferta de empleo: "+oferta.titulo + " \n" + oferta.url+ "\n" +
-            //        "#vigilanciayproteccion #empleo #seguridad #Vigilante #empleoseguridad");
+            //        "#.. #empleo #seguridad #Vigilante #empleoseguridad");
             //    if (output.Contains("error"))
             //    {
             //        _logger.LogDebug("Offer not published Twitter");
@@ -172,7 +172,7 @@ namespace PLANTILLA.ICARO.Controllers
 
             //    //Twitter
             //    string output = await Twitterposter.Twitt(noticia.titulo+"\n\n" + noticia.url + "\n" +
-            //        "#vigilanciayproteccion #noticias #seguridad #Vigilante");
+            //        "#.. #noticias #seguridad #Vigilante");
             //    if (output.Contains("error"))
             //    {
             //        _logger.LogDebug("Post published Twitter NO");
