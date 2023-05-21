@@ -39,6 +39,7 @@ namespace PLANTIILLA.DEDOMENA.Clases
             if(empleo_jooble.Count > 0){
                 empleo_jooble = _repoEmpleo.CompareAllWithDB(empleo_jooble);
                 empleo_jooble = _repoEmpleoBR.CompareAllWithDB(empleo_jooble);
+                List<EmpleoBR> empleoABorrar = new List<EmpleoBR>();
                 //Metemos las nuevas ofertas en borradores
                 foreach (EmpleoBR e in empleo_jooble)
                 {
@@ -53,9 +54,15 @@ namespace PLANTIILLA.DEDOMENA.Clases
                         e.Email, "B", e.FechaPub);
                     if (inserted == false)
                     {
-                        empleo_jooble.Remove(e);
+                        //empleo_jooble.Remove(e);
+                        empleoABorrar.Add(e);
                     }
                 }
+                foreach (EmpleoBR e in empleoABorrar)
+                {
+                    empleo_jooble.Remove(e);
+                }
+
                 return empleo_jooble;
             }
             else
@@ -73,25 +80,28 @@ namespace PLANTIILLA.DEDOMENA.Clases
                 //devuelve una lista de empleos que no estan en la base de datos de borradores ni publicas
                 empleo_infojobs = _repoEmpleo.CompareInfojobsWithDB(empleo_infojobs);
                 empleo_infojobs = _repoEmpleoBR.CompareInfojobsWithDB(empleo_infojobs);
-                if (empleo_infojobs.Count > 0)
+                List<EmpleoBR> empleoABorrar = new List<EmpleoBR>();
+                //Metemos las nuevas ofertas en borradores
+                foreach (EmpleoBR e in empleo_infojobs)
                 {
-                    //Metemos las nuevas ofertas en borradores
-                    foreach (EmpleoBR e in empleo_infojobs)
+                    bool inserted = _repoEmpleoBR.InsertEmpleoBR(
+                        e.Titulo,
+                        e.Descripcion,
+                        e.Salario,
+                        e.Url,
+                        e.Provincia,
+                        e.Categoria,
+                        e.Telefono,
+                        e.Email, "B", e.FechaPub);
+                    if (inserted == false)
                     {
-                        bool inserted = _repoEmpleoBR.InsertEmpleoBR(
-                            e.Titulo,
-                            e.Descripcion,
-                            e.Salario,
-                            e.Url,
-                            e.Provincia,
-                            e.Categoria,
-                            e.Telefono,
-                            e.Email, "B", e.FechaPub);
-                        if (inserted == false)
-                        {
-                            empleo_infojobs.Remove(e);
-                        }
+                        //empleo_jooble.Remove(e);
+                        empleoABorrar.Add(e);
                     }
+                }
+                foreach (EmpleoBR e in empleoABorrar)
+                {
+                    empleo_infojobs.Remove(e);
                 }
                 return empleo_infojobs;
             }
@@ -110,26 +120,30 @@ namespace PLANTIILLA.DEDOMENA.Clases
                 //devuelve una lista de empleos que no estan en la base de datos de borradores ni publicas
                 empleo_indeed = _repoEmpleo.CompareIndeedWithDB(empleo_indeed);
                 empleo_indeed = _repoEmpleoBR.CompareIndeedWithDB(empleo_indeed);
-                if (empleo_indeed.Count > 0)
+                List<EmpleoBR> empleoABorrar = new List<EmpleoBR>();
+                //Metemos las nuevas ofertas en borradores
+                foreach (EmpleoBR e in empleo_indeed)
                 {
-                    //Metemos las nuevas ofertas en borradores
-                    foreach (EmpleoBR e in empleo_indeed)
+                    bool inserted = _repoEmpleoBR.InsertEmpleoBR(
+                        e.Titulo,
+                        e.Descripcion,
+                        e.Salario,
+                        e.Url,
+                        e.Provincia,
+                        e.Categoria,
+                        e.Telefono,
+                        e.Email, "B", e.FechaPub);
+                    if (inserted == false)
                     {
-                        bool inserted = _repoEmpleoBR.InsertEmpleoBR(
-                            e.Titulo,
-                            e.Descripcion,
-                            e.Salario,
-                            e.Url,
-                            e.Provincia,
-                            e.Categoria,
-                            e.Telefono,
-                            e.Email, "B", e.FechaPub);
-                        if (inserted == false)
-                        {
-                            empleo_indeed.Remove(e);
-                        }
+                        //empleo_jooble.Remove(e);
+                        empleoABorrar.Add(e);
                     }
                 }
+                foreach (EmpleoBR e in empleoABorrar)
+                {
+                    empleo_indeed.Remove(e);
+                }
+
                 return empleo_indeed;
             }
             else
