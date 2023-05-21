@@ -19,6 +19,8 @@ using PLANTIILLA.DEDOMENA.Clases;
 using Quartz;
 using Quartz.Spi;
 using Quartz.Impl;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace PLANTIILLA.DEDOMENA.Helpers
 {
@@ -45,7 +47,7 @@ namespace PLANTIILLA.DEDOMENA.Helpers
         public void ConfigureServices(IServiceCollection services)
         {
             //ICARO
-            string url_icaro = Configuration.GetConnectionString("VYPPORTAL.ICARO");
+            string url_icaro = Configuration.GetConnectionString("ICARO");
 
 
             string cadenasql =
@@ -116,7 +118,7 @@ namespace PLANTIILLA.DEDOMENA.Helpers
                 {
                     Version = "v1",
                     Title = "PLANTIILLA - DEDOMENA",
-                    Description = "API de datos del Portal Vigilancia y Proteccion",
+                    Description = "API de datos",
                     //TermsOfService = new Uri("https://example.com/terms"),
                     //Contact = new OpenApiContact
                     //{
@@ -153,6 +155,19 @@ namespace PLANTIILLA.DEDOMENA.Helpers
                     }
                 });
                 options.IncludeXmlComments(XmlCommentsFilePath);
+                options.TagActionsBy(api =>
+                {
+                    if (api.GroupName != null)
+                    {
+                        return new[] { api.GroupName };
+                    }
+                    if (api.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
+                    {
+                        return new[] { controllerActionDescriptor.ControllerName };
+                    }
+                    throw new InvalidOperationException("Unable to determine tag for endpoint.");
+                });
+                options.DocInclusionPredicate((name, api) => true);
 
             });
 
@@ -175,6 +190,7 @@ namespace PLANTIILLA.DEDOMENA.Helpers
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
+                options.DocExpansion(DocExpansion.None);
                 options.SwaggerEndpoint("./swagger/v1/swagger.json", "v1");
                 options.RoutePrefix = string.Empty;
             });

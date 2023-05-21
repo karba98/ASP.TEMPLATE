@@ -88,8 +88,8 @@ namespace PLANTILLA.ICARO
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "VYPPORTAL - ICARO",
-                    Description = "Sandbox para acciones de publicación en redes sociales del Portal Vigilancia y Proteccion",
+                    Title = "ICARO",
+                    Description = "Publicación en redes sociales",
                     //TermsOfService = new Uri("https://example.com/terms"),
                     //Contact = new OpenApiContact
                     //{

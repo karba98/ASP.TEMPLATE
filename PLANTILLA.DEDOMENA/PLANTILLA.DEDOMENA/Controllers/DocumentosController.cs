@@ -13,6 +13,8 @@ namespace PLANTIILLA.DEDOMENA.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(GroupName = "GROUPNAME")]
+
     public class DocumentosController : ControllerBase
     {
         RepositoryDocuments _repo;

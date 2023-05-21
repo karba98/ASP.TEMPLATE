@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Net;
 
-namespace VYPPORTAL.DEDOMENA.Clases
+namespace PLANTILLA.DEDOMENA.Clases
 {
     public static class TinyUrl
     {

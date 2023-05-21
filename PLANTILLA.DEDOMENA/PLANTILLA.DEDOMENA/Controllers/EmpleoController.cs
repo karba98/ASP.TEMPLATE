@@ -17,6 +17,8 @@ namespace PLANTIILLA.DEDOMENA.Controllers
 
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(GroupName = "GROUPNAME")]
+
     public class EmpleoController : ControllerBase
     {
         readonly ILogger<EmpleoController> _logger;

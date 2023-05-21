@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Telegram.Bot;
-using VYPPORTAL.DEDOMENA.Clases;
 using PLANTILLA.ICARO.Controllers;
 using PLANTILLA.ICARO.Models;
 using PLANTILLA.ICARO.Repositories;
