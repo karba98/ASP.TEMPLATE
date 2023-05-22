@@ -7,7 +7,7 @@
 }
 
 .navbar_main {
-    background-color: #ffff !important;
+    background-color: #D9E3FF !important;
 }
 
 #navbar a {
@@ -20,7 +20,8 @@
 }
 
     #navbar a:hover {
-        background-color: #ddd;
+        background-color: #668EFF;
+        border-radius: 20px;
         color: black;
     }
 
@@ -38,7 +39,7 @@
 
 
 .logo {
-    width: 70px;
+    width: 110px;
     height: 70px;
 }
 
@@ -68,7 +69,9 @@ quede enganchado*/
     }
 
     .dropdown-menu {
+        background-color: rgba(255,255,255,0.6);
         border: none !important;
+        border-radius:20px;
         box-shadow: none !important;
     }
 }
