@@ -35,9 +35,6 @@ Para configurar y ejecutar el proyecto se deben seguir los siguientes pasos:
 5. Configurar cadenas de conexion BD en appsettings.json de DEDOMENA e ICARO
 6. Ejecutar en este orden: ICARO, DEDOMENA y WEB.
 
-## Licencia
-
-Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
 
 ## Contacto
 
